@@ -3,136 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bullet FX King</title>
+  <title>Bullet Forex King</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      color: #fff;
-      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
-                  url("https://www.tradingview.com/x/XAUUSDChart.png") no-repeat center center fixed;
+      color: #f2f2f2;
+      background: #000;
+      background-image: url("charts/xauusd-bg.png"); /* Background chart */
       background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ffd700;
+      margin: 0.5rem 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ddd;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: rgba(0,0,0,0.85);
-      padding: 15px;
+      gap: 2rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.8);
       position: sticky;
       top: 0;
-      z-index: 100;
     }
+
     nav a {
-      margin: 0 15px;
       text-decoration: none;
-      color: #fff;
+      color: #f2f2f2;
       font-weight: bold;
       transition: color 0.3s;
     }
-    nav a:hover { color: #00ffcc; }
 
-    header {
-      text-align: center;
-      padding: 60px 20px;
+    nav a:hover {
+      color: #ffd700;
     }
-    header h1 {
-      font-size: 3rem;
-      color: #ffeb3b;
-      text-shadow: 0 0 20px #ffeb3b;
-    }
-    header p { font-size: 1.2rem; color: #ccc; }
 
     section {
       max-width: 900px;
-      margin: 50px auto;
-      background: rgba(0,0,0,0.75);
-      padding: 30px;
+      margin: 3rem auto;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 2rem;
       border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
     }
-    h2 { color: #00ffcc; margin-bottom: 15px; }
-    blockquote {
-      font-style: italic;
-      color: #ffeb3b;
-      border-left: 4px solid #00ffcc;
-      padding-left: 15px;
-      margin: 20px 0;
+
+    section h2 {
+      color: #ffd700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    section img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.85);
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #aaa;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.85);
+      color: #888;
+      margin-top: 2rem;
     }
-    footer p.contact { color: #00ffcc; margin: 5px 0; }
-
-    img.chart {
-      max-width: 100%;
-      margin: 10px 0;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    img.chart:hover { transform: scale(1.02); }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .modal-content {
-      max-width: 90%;
-      max-height: 70%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00ffcc;
-    }
-    .modal-caption {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      color: #00ffcc;
-      text-align: center;
-      max-width: 90%;
-    }
-    .modal-toc { margin-top: 15px; text-align: center; }
-    .modal-toc button {
-      background: #00ffcc;
-      color: #000;
-      border: none;
-      padding: 8px 12px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .modal-toc button:hover { background: #ffeb3b; }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .close:hover { color: #00ffcc; }
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
   <nav>
     <a href="#welcome">Welcome</a>
     <a href="#smc">SMC</a>
@@ -141,91 +100,62 @@
     <a href="#quotes">Quotes</a>
   </nav>
 
-  <!-- Header -->
   <header>
     <h1>Bullet Forex King</h1>
     <p>Smart Money Concepts • Liquidity • Institutional Order Flow</p>
   </header>
 
-  <!-- Sections -->
   <section id="welcome">
     <h2>Welcome</h2>
-    <p>Welcome to <strong>Bullet Forex King</strong>, your guide to mastering <em>Smart Money Concepts</em> and trading XAUUSD like institutions.</p>
+    <p>
+      Welcome to Bullet Forex King, your guide to mastering Smart Money Concepts (SMC) and trading with precision.
+      Here you’ll learn how institutional traders view the markets and how you can align with them.
+    </p>
   </section>
 
   <section id="smc">
     <h2>Smart Money Concepts (SMC)</h2>
-    <ul>
-      <li><strong>Liquidity Grabs:</strong> <img src="charts/liquiditygrab.png" alt="Liquidity Grab" class="chart" onclick="openModal('LiquidityGrab')"></li>
-      <li><strong>Fair Value Gaps:</strong> <img src="charts/fairvaluegap.png" alt="FVG" class="chart" onclick="openModal('FVG')"></li>
-      <li><strong>Premium & Discount Zones:</strong> <img src="charts/premiumdiscount.png" alt="PD Zone" class="chart" onclick="openModal('PDZone')"></li>
-      <li><strong>Mitigation Blocks:</strong> <img src="charts/mitigation.png" alt="Mitigation" class="chart" onclick="openModal('Mitigation')"></li>
-    </ul>
-    <blockquote>"The market is designed to transfer wealth from the impatient to the patient."</blockquote>
+    <p>
+      Smart Money Concepts is about understanding how the largest market participants — banks, hedge funds, and institutions — trade the markets.
+      By learning SMC strategies, you can spot liquidity zones, fair value gaps, and order blocks that drive price action.
+    </p>
+    <img src="charts/fairvaluegap.png" alt="Fair Value Gap Example">
   </section>
 
   <section id="liquidity">
     <h2>Liquidity</h2>
-    <p>Institutions manipulate liquidity to execute large orders. Understanding this helps predict market moves.</p>
+    <p>
+      Liquidity grabs occur when price manipulates above or below key highs and lows to collect orders before reversing.
+      Recognizing liquidity levels is essential to avoid false breakouts and align with smart money moves.
+    </p>
+    <img src="charts/liquiditygrab.png" alt="Liquidity Grab Example">
   </section>
 
   <section id="orderflow">
     <h2>Order Flow</h2>
-    <p>Order flow shows where smart money is accumulating or distributing. Aligning with it increases trading success.</p>
+    <p>
+      Order flow shows how institutions place large trades. By analyzing order blocks and imbalances, traders can anticipate where price will move next.
+      This gives you a roadmap to follow the smart money.
+    </p>
+    <img src="charts/mitigation.png" alt="Mitigation Block Example">
+  </section>
+
+  <section id="zones">
+    <h2>Premium & Discount Zones</h2>
+    <p>
+      Price often trades between premium (sell zones) and discount (buy zones). Identifying these areas allows traders to enter trades at optimal levels.
+    </p>
+    <img src="charts/premiumdiscount.png" alt="Premium and Discount Zones Example">
   </section>
 
   <section id="quotes">
-    <h2>Trading Quotes</h2>
-    <blockquote>"The trend is your friend, until it bends at the end."</blockquote>
-    <blockquote>"Amateurs think about how much they can make. Professionals think about how much they can lose."</blockquote>
-    <blockquote>"The goal of a successful trader is to make the best trades. Money is secondary."</blockquote>
-    <blockquote>"Patience separates the profitable trader from the impulsive gambler."</blockquote>
+    <h2>Inspirational Quotes</h2>
+    <p><i>"The market is a device for transferring money from the impatient to the patient." — Warren Buffett</i></p>
+    <p><i>"Risk comes from not knowing what you are doing." — Warren Buffett</i></p>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p class="contact">Contact: +264 81 723 9818 | Email: lifasimalumo48@gmail.com</p>
-    <p>© 2025 Bullet Forex King — All Rights Reserved</p>
+    <p>© 2025 Bullet Forex King. All rights reserved.</p>
   </footer>
-
-  <!-- Modal -->
-  <div id="chartModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <div class="modal-caption" id="modalCaption"></div>
-    <div class="modal-toc">
-      <button onclick="switchModal('LiquidityGrab')">Liquidity Grab</button>
-      <button onclick="switchModal('FVG')">Fair Value Gap</button>
-      <button onclick="switchModal('PDZone')">Premium/Discount</button>
-      <button onclick="switchModal('Mitigation')">Mitigation Block</button>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.getElementById("chartModal");
-    const modalImg = document.getElementById("modalImg");
-    const modalCaption = document.getElementById("modalCaption");
-
-    const charts = {
-      "LiquidityGrab": { src: "charts/liquiditygrab.png", caption: "Liquidity Grabs on XAUUSD" },
-      "FVG": { src: "charts/fairvaluegap.png", caption: "Fair Value Gaps on XAUUSD" },
-      "PDZone": { src: "charts/premiumdiscount.png", caption: "Premium & Discount Zones on XAUUSD" },
-      "Mitigation": { src: "charts/mitigation.png", caption: "Mitigation Blocks on XAUUSD" }
-    };
-
-    function openModal(key) {
-      modal.style.display = "flex";
-      modalImg.src = charts[key].src;
-      modalCaption.textContent = charts[key].caption;
-    }
-    function closeModal() { modal.style.display = "none"; }
-    function switchModal(key) {
-      modalImg.src = charts[key].src;
-      modalCaption.textContent = charts[key].caption;
-    }
-    window.onclick = function(event) {
-      if (event.target == modal) { closeModal(); }
-    }
-  </script>
 </body>
 </html>
