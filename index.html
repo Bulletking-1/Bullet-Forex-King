@@ -6,29 +6,91 @@
   <title>Bullet FX King</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: black;
-      color: white;
+      margin: 0;
+      background: #0d0d0d;
+      color: #f2f2f2;
+      line-height: 1.6;
+    }
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      color: #ffd700;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #222;
+    }
+    nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: #ffd700;
+      color: #000;
+    }
+    section {
+      padding: 40px;
       text-align: center;
     }
-    .floating {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      font-size: 18px;
-      background: rgba(255, 215, 0, 0.9);
-      padding: 8px 15px;
-      border-radius: 10px;
-      color: black;
+    .highlight {
+      color: #ffd700;
       font-weight: bold;
+    }
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <div class="floating">Bullet FX King</div>
-  <h1>Welcome to Bullet FX King</h1>
-  <p>Smart Money Concept (SMC) Forex Trading</p>
-  <p>Created by Lifasi Malumo Jonnah</p>
+  <header>
+    Bullet FX King
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Strategy</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome to <span class="highlight">Bullet FX King</span></h1>
+    <p>Smart Money Concept (SMC) Forex Trading</p>
+    <p>Created by Lifasi Malumo Jonnah</p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I specialize in <span class="highlight">Smart Money Concepts (SMC)</span> to trade forex with precision and consistency. 
+       My goal is to provide insights and strategies that help traders succeed in the market.</p>
+  </section>
+
+  <section id="services">
+    <h2>Strategy</h2>
+    <p>✔ Market Structure Analysis</p>
+    <p>✔ Order Blocks</p>
+    <p>✔ Liquidity Zones</p>
+    <p>✔ Risk Management & Psychology</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <span class="highlight">your-email@example.com</span></p>
+    <p>Telegram: <span class="highlight">@BulletFXKing</span></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Bullet FX King. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
