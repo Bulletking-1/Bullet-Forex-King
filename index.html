@@ -1,179 +1,290 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bullet FX King</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bullet Forex King — SMC & Liquidity</title>
+  <meta name="theme-color" content="#0b0f14" />
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: Arial, sans-serif;
-      color: #f2f2f2;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
+    :root{
+      --ink:#e6fff7;
+      --accent:#00ffd0;
+      --accent-2:#4dffd9;
+      --grid:#0f1a22;
+      --zone:#00ffd033;     /* liquidity zone fill */
+      --zone-line:#00ffd080;/* liquidity zone border */
+      --bear:#ff5e5e;
+      --bull:#32e695;
+      --glow:0 0 25px rgba(0,255,200,.25);
+      --card-bg:rgba(3,7,10,.7);
     }
 
-    /* Chart background */
-    #tradingview_chart {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      background:#0b0f14 radial-gradient(1200px 800px at 70% -20%, #0f1922 0%, #0b0f14 55%, #070a0d 100%) no-repeat;
+      overflow-x:hidden;
     }
 
-    /* Animated gradient overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(-45deg, rgba(0,0,0,0.7), rgba(17,17,17,0.6), rgba(0,0,0,0.8), rgba(34,34,34,0.6));
-      background-size: 400% 400%;
-      animation: gradientMove 20s ease infinite;
-      z-index: -1;
+    /* ---- Animated SVG background ---- */
+    .fx-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      filter:drop-shadow(0 0 10px rgba(0,0,0,.35));
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* layer to darken for readability */
+    .veil{
+      position:fixed; inset:0; z-index:-1;
+      background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6) 60%, rgba(0,0,0,.8));
+      pointer-events:none;
     }
 
-    /* Header with neon glow */
-    header {
-      background: rgba(17, 17, 17, 0.85);
-      padding: 20px;
-      text-align: center;
-      color: #ffd700;
-      font-size: 32px;
-      font-weight: bold;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 0 10px #ffd700, 0 0 20px #ffae00, 0 0 40px #ffd700;
+    header{
+      text-align:center;
+      padding:64px 16px 24px;
+    }
+    h1{
+      margin:0 0 6px;
+      font-size:clamp(34px, 5vw, 56px);
+      letter-spacing:.5px;
+      color:var(--accent);
+      text-shadow:0 6px 40px rgba(0,255,200,.12);
+    }
+    .subtitle{
+      color:#b7c7c2;
+      font-size:clamp(14px, 2.5vw, 18px);
+      opacity:.95;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: rgba(34, 34, 34, 0.85);
-      position: relative;
-      z-index: 1;
+    .card{
+      width:min(920px, 92vw);
+      margin:28px auto 72px;
+      background:var(--card-bg);
+      backdrop-filter: blur(8px);
+      border:1px solid #0f2a26;
+      border-radius:18px;
+      padding:22px 20px;
+      box-shadow:var(--glow);
+    }
+    .card h2{
+      margin:0 0 8px;
+      font-size:clamp(18px, 3vw, 24px);
+      color:var(--accent-2);
+    }
+    .card p{margin:.25rem 0 0; color:#cfe6df; line-height:1.6}
+
+    footer{
+      text-align:center;
+      color:#8fa6a0;
+      padding:28px 12px 40px;
+      font-size:14px;
     }
 
-    nav a {
-      color: #fff;
-      padding: 14px 20px;
-      text-decoration: none;
-      transition: 0.3s;
-      position: relative;
+    /* small control chip */
+    .controls{
+      position:fixed; right:14px; bottom:14px; z-index:5;
+      display:flex; gap:8px; align-items:center;
+      background:rgba(10,16,19,.75);
+      border:1px solid #123a34; border-radius:999px; padding:8px 10px;
+      box-shadow:var(--glow)
     }
-
-    /* Neon hover effect */
-    nav a:hover {
-      background: #ffd700;
-      color: #000;
-      box-shadow: 0 0 10px #ffd700, 0 0 20px #ffae00, 0 0 30px #ffd700;
-      border-radius: 5px;
+    .btn{
+      appearance:none; border:1px solid #13423b; background:#0c161a; color:var(--ink);
+      padding:8px 12px; border-radius:999px; cursor:pointer; font:600 12px/1.1 inherit;
     }
-
-    section {
-      padding: 40px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .highlight {
-      color: #ffd700;
-      font-weight: bold;
-      text-shadow: 0 0 5px #ffd700, 0 0 10px #ffae00;
-    }
-
-    footer {
-      background: rgba(17, 17, 17, 0.85);
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      position: relative;
-      z-index: 1;
-      color: #ffd700;
-      text-shadow: 0 0 8px #ffd700, 0 0 16px #ffae00;
-    }
+    .btn:hover{border-color:#1b6b60}
+    .badge{font-size:11px; padding:6px 10px; border-radius:999px; background:#0c1317; border:1px solid #13343a; color:#9bdacb}
   </style>
 </head>
 <body>
-  <!-- TradingView Background -->
-  <div class="tradingview-widget-container" id="tradingview_chart"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-    new TradingView.widget({
-      "autosize": true,
-      "symbol": "BTCUSDT",   // Change to EURUSD, AAPL, ETHUSDT, etc.
-      "interval": "15",
-      "timezone": "Etc/UTC",
-      "theme": "dark",
-      "style": "1",
-      "locale": "en",
-      "backgroundColor": "rgba(0, 0, 0, 1)",
-      "hide_top_toolbar": true,
-      "hide_legend": true,
-      "hide_side_toolbar": true,
-      "withdateranges": false,
-      "container_id": "tradingview_chart"
-    });
-  </script>
+  <!-- Animated SVG Background -->
+  <svg class="fx-bg" id="fx-bg" preserveAspectRatio="none" viewBox="0 0 1200 800">
+    <!-- Grid -->
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--grid)" stroke-width="1"/>
+      </pattern>
+      <linearGradient id="wickfade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity=".65"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity=".15"/>
+      </linearGradient>
+    </defs>
 
-  <!-- Animated Overlay -->
-  <div class="overlay"></div>
+    <rect width="1200" height="800" fill="url(#grid)"></rect>
 
-  <!-- Website Content -->
+    <!-- Liquidity zones (bands) -->
+    <g id="liquidity">
+      <!-- top equal highs pool -->
+      <rect x="0" y="140" width="1200" height="38" fill="var(--zone)" stroke="var(--zone-line)" stroke-dasharray="6 6"/>
+      <text x="12" y="162" fill="var(--accent)" font-size="14" opacity=".9">Liquidity Pool — Equal Highs</text>
+
+      <!-- mid FVG (gap) -->
+      <rect x="0" y="360" width="1200" height="26" fill="var(--zone)" stroke="var(--zone-line)" stroke-dasharray="6 6"/>
+      <text x="12" y="375" fill="var(--accent)" font-size="14" opacity=".9">Fair Value Gap (Imbalance)</text>
+
+      <!-- demand zone / OB -->
+      <rect x="0" y="560" width="1200" height="46" fill="var(--zone)" stroke="var(--zone-line)" stroke-dasharray="6 6"/>
+      <text x="12" y="585" fill="var(--accent)" font-size="14" opacity=".9">Demand / Order Block</text>
+    </g>
+
+    <!-- Candle stream -->
+    <g id="candles"></g>
+  </svg>
+  <div class="veil"></div>
+
+  <!-- Foreground content -->
   <header>
-    Bullet FX King
+    <h1>Bullet Forex King</h1>
+    <div class="subtitle">Smart Money Concepts • Liquidity • Institutional Order Flow</div>
   </header>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Strategy</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="home">
-    <h1>Welcome to <span class="highlight">Bullet FX King</span></h1>
-    <p>Smart Money Concept (SMC) Forex Trading</p>
-    <p>Created by Lifasi Malumo Jonnah</p>
+  <section class="card">
+    <h2>Welcome</h2>
+    <p>
+      Navigate SMC ideas: liquidity grabs, mitigation, FVGs, and premium/discount.  
+      Trade with intent — identify pools of resting orders and the footprints of smart money.
+    </p>
   </section>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>I specialize in <span class="highlight">Smart Money Concepts (SMC)</span> to trade forex with precision and consistency. 
-       My goal is to provide insights and strategies that help traders succeed in the market.</p>
-  </section>
+  <footer>© 2025 Bullet Forex King</footer>
 
-  <section id="services">
-    <h2>Strategy</h2>
-    <p>✔ Market Structure Analysis</p>
-    <p>✔ Order Blocks</p>
-    <p>✔ Liquidity Zones</p>
-    <p>✔ Risk Management & Psychology</p>
-  </section>
+  <!-- Controls -->
+  <div class="controls">
+    <span class="badge">Live Background</span>
+    <button class="btn" id="toggle">Pause</button>
+  </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <span class="highlight">your-email@example.com</span></p>
-    <p>Telegram: <span class="highlight">@BulletFXKing</span></p>
-  </section>
+  <script>
+    // ===== Animated Candlestick Background =====
+    (function () {
+      const svg = document.getElementById('fx-bg');
+      const stream = document.getElementById('candles');
 
-  <footer>
-    <p>&copy; 2025 Bullet FX King. All Rights Reserved.</p>
-  </footer>
+      const W = 1200, H = 800;
+      const topPad = 90, botPad = 80;   // keep away from labels
+      const priceMin = topPad, priceMax = H - botPad;
+
+      const bodyW = 9;      // candle body width
+      const gap = 7;        // gap between candles
+      const speed = 0.8;    // px per frame
+      const maxCandles = Math.ceil(W / (bodyW + gap)) + 6;
+
+      let lastClose = (priceMin + priceMax) / 2;
+      let offsetX = 0;
+      let running = true;
+
+      // util: clamp
+      const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+      function priceToY(p){ return clamp(p, priceMin, priceMax); }
+
+      function newOHLC(prevClose){
+        // random walk with occasional "liquidity sweep" spikes
+        const drift = (Math.random() - 0.5) * 20;
+        const sweep = Math.random() < 0.04 ? (Math.random() < 0.5 ? -1 : 1) * (40 + Math.random()*80) : 0;
+        const close = clamp(prevClose + drift + sweep, priceMin + 10, priceMax - 10);
+        const range = 16 + Math.random()*42;
+        const body = 6 + Math.random()*22;
+        const high = clamp(Math.max(close, prevClose) + range/2, priceMin, priceMax);
+        const low  = clamp(Math.min(close, prevClose) - range/2, priceMin, priceMax);
+        const open = clamp(close + (Math.random() < 0.5 ? -body : body), priceMin, priceMax);
+        return {open, high, low, close};
+      }
+
+      function drawCandle(x, ohlc){
+        const bullish = ohlc.close >= ohlc.open;
+        const color = bullish ? getCSS('--bull') : getCSS('--bear');
+        const top = Math.min(ohlc.open, ohlc.close);
+        const height = Math.max(2, Math.abs(ohlc.close - ohlc.open));
+
+        const g = create('g', { transform:`translate(${x},0)` });
+
+        // wick
+        g.appendChild(create('line', {
+          x1: bodyW/2, y1: priceToY(ohlc.high),
+          x2: bodyW/2, y2: priceToY(ohlc.low),
+          stroke: 'url(#wickfade)', 'stroke-width': 2, 'stroke-linecap':'round', opacity:.9
+        }));
+
+        // body
+        g.appendChild(create('rect', {
+          x: 0, y: priceToY(top),
+          width: bodyW, height: Math.max(2, height),
+          rx: 2, ry: 2,
+          fill: color, opacity:.9
+        }));
+
+        // small glow line at close to suggest "liquidity grab"
+        g.appendChild(create('line', {
+          x1: -1, x2: bodyW+1,
+          y1: priceToY(ohlc.close), y2: priceToY(ohlc.close),
+          stroke: color, 'stroke-opacity': .25, 'stroke-width': 1
+        }));
+
+        return g;
+      }
+
+      function getCSS(varName){
+        return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      }
+
+      function create(tag, attrs){
+        const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+        for(const k in attrs) el.setAttribute(k, attrs[k]);
+        return el;
+      }
+
+      // seed the stream
+      let x = 40;
+      for(let i=0;i<maxCandles;i++){
+        const o = newOHLC(lastClose); lastClose = o.close;
+        stream.appendChild(drawCandle(x, o));
+        x += bodyW + gap;
+      }
+
+      function tick(){
+        if(!running){ requestAnimationFrame(tick); return; }
+
+        offsetX -= speed;
+        stream.setAttribute('transform', `translate(${offsetX},0)`);
+
+        // when left-most candle is off-screen, recycle: remove one, append a new one at the end
+        const first = stream.firstElementChild;
+        if(first){
+          const bbox = first.getBBox();
+          if(bbox.x + bbox.width + offsetX < -40){
+            stream.removeChild(first);
+            const last = stream.lastElementChild;
+            const lastX = last ? last.getBBox().x : 40;
+            const nx = lastX + bodyW + gap;
+            const o = newOHLC(lastClose); lastClose = o.close;
+            stream.appendChild(drawCandle(nx, o));
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // pause / resume
+      document.getElementById('toggle').addEventListener('click', function(){
+        running = !running;
+        this.textContent = running ? 'Pause' : 'Play';
+      });
+
+      // Resize handling: keep the SVG filling the screen without distortion
+      const resize = () => {
+        const r = window.devicePixelRatio || 1;
+        svg.setAttribute('width', window.innerWidth * r);
+        svg.setAttribute('height', window.innerHeight * r);
+      };
+      resize(); addEventListener('resize', resize, {passive:true});
+    })();
+  </script>
 </body>
 </html>
