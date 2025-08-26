@@ -9,9 +9,10 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: #fff;
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
-                  url("https://images.unsplash.com/photo-1612831661460-bf8329b4731d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNzR8MHwxfGFsbHwxfHxmb3JleHxlbnwwfHx8fDE2OTQ1Njk0NjE&ixlib=rb-4.0.3&q=80&w=1600") no-repeat center center fixed;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+                  url("https://images.unsplash.com/photo-1554224154-22dec7ec8818?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600") no-repeat center center fixed;
       background-size: cover;
+      background-attachment: fixed;
     }
 
     nav {
@@ -117,6 +118,7 @@
       max-height: 70%;
       border-radius: 10px;
       box-shadow: 0 0 20px #00ffcc;
+      transition: opacity 0.4s ease;
     }
 
     .modal-caption {
@@ -317,43 +319,3 @@
       "FVG": {
         src: "https://www.tradingview.com/x/FairValueGapExample.png",
         caption: "Fair Value Gaps: Gaps in price action where smart money takes positions."
-      },
-      "PDZone": {
-        src: "https://www.tradingview.com/x/PremiumDiscountZoneExample.png",
-        caption: "Premium & Discount Zones: Areas where price is overbought or oversold relative to institutional levels."
-      },
-      "Mitigation": {
-        src: "https://www.tradingview.com/x/MitigationBlockExample.png",
-        caption: "Mitigation Blocks: Zones where institutions neutralize excess orders before continuation."
-      }
-    };
-
-    function openModal(key, src=null) {
-      modal.style.display = "flex";
-      if(src) {
-        modalImg.src = src;
-      } else {
-        modalImg.src = charts[key].src;
-      }
-      modalCaption.textContent = charts[key].caption;
-    }
-
-    function switchModal(key) {
-      modalImg.src = charts[key].src;
-      modalCaption.textContent = charts[key].caption;
-    }
-
-    function closeModal() {
-      modal.style.display = "none";
-      modalImg.src = "";
-      modalCaption.textContent = "";
-    }
-
-    modal.addEventListener("click", function(event) {
-      if (event.target === modal) {
-        closeModal();
-      }
-    });
-  </script>
-</body>
-          </html>
