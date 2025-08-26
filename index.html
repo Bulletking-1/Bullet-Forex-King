@@ -10,9 +10,8 @@
       font-family: Arial, sans-serif;
       color: #fff;
       background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
-                  url("https://images.unsplash.com/photo-1554224154-22dec7ec8818?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600") no-repeat center center fixed;
+                  url("https://www.tradingview.com/x/XAUUSDChart.png") no-repeat center center fixed;
       background-size: cover;
-      background-attachment: fixed;
     }
 
     nav {
@@ -31,9 +30,7 @@
       font-weight: bold;
       transition: color 0.3s;
     }
-    nav a:hover {
-      color: #00ffcc;
-    }
+    nav a:hover { color: #00ffcc; }
 
     header {
       text-align: center;
@@ -44,10 +41,7 @@
       color: #ffeb3b;
       text-shadow: 0 0 20px #ffeb3b;
     }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
+    header p { font-size: 1.2rem; color: #ccc; }
 
     section {
       max-width: 900px;
@@ -56,12 +50,7 @@
       padding: 30px;
       border-radius: 12px;
     }
-
-    h2 {
-      color: #00ffcc;
-      margin-bottom: 15px;
-    }
-
+    h2 { color: #00ffcc; margin-bottom: 15px; }
     blockquote {
       font-style: italic;
       color: #ffeb3b;
@@ -69,7 +58,6 @@
       padding-left: 15px;
       margin: 20px 0;
     }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -78,11 +66,7 @@
       font-size: 0.9rem;
       color: #aaa;
     }
-
-    footer p.contact {
-      color: #00ffcc;
-      margin: 5px 0;
-    }
+    footer p.contact { color: #00ffcc; margin: 5px 0; }
 
     img.chart {
       max-width: 100%;
@@ -91,12 +75,8 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
+    img.chart:hover { transform: scale(1.02); }
 
-    img.chart:hover {
-      transform: scale(1.02);
-    }
-
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -112,15 +92,12 @@
       padding: 20px;
       box-sizing: border-box;
     }
-
     .modal-content {
       max-width: 90%;
       max-height: 70%;
       border-radius: 10px;
       box-shadow: 0 0 20px #00ffcc;
-      transition: opacity 0.4s ease;
     }
-
     .modal-caption {
       margin-top: 15px;
       font-size: 1.1rem;
@@ -128,12 +105,7 @@
       text-align: center;
       max-width: 90%;
     }
-
-    .modal-toc {
-      margin-top: 15px;
-      text-align: center;
-    }
-
+    .modal-toc { margin-top: 15px; text-align: center; }
     .modal-toc button {
       background: #00ffcc;
       color: #000;
@@ -144,11 +116,7 @@
       border-radius: 5px;
       transition: background 0.3s;
     }
-
-    .modal-toc button:hover {
-      background: #ffeb3b;
-    }
-
+    .modal-toc button:hover { background: #ffeb3b; }
     .close {
       position: absolute;
       top: 20px;
@@ -159,17 +127,15 @@
       cursor: pointer;
       transition: color 0.3s;
     }
-
-    .close:hover {
-      color: #00ffcc;
-    }
+    .close:hover { color: #00ffcc; }
   </style>
 </head>
 <body>
+
   <!-- Navbar -->
   <nav>
     <a href="#welcome">Welcome</a>
-    <a href="#smc">Smart Money Concepts</a>
+    <a href="#smc">SMC</a>
     <a href="#liquidity">Liquidity</a>
     <a href="#orderflow">Order Flow</a>
     <a href="#quotes">Quotes</a>
@@ -181,104 +147,33 @@
     <p>Smart Money Concepts • Liquidity • Institutional Order Flow</p>
   </header>
 
-  <!-- Welcome Section -->
+  <!-- Sections -->
   <section id="welcome">
     <h2>Welcome</h2>
-    <p>
-      Welcome to <strong>Bullet Forex King</strong>, your guide to mastering 
-      <em>Smart Money Concepts</em> and trading with precision. 
-      Here you’ll discover how to trade like institutions, following the footprints 
-      of banks and hedge funds. 
-    </p>
-    <p>
-      We dive deep into the mechanics of liquidity grabs, fair value gaps, 
-      premium vs. discount zones, and order flow. 
-      The goal is to empower traders with the mindset and strategies 
-      of smart money — trading with intent, not hope.
-    </p>
+    <p>Welcome to <strong>Bullet Forex King</strong>, your guide to mastering <em>Smart Money Concepts</em> and trading XAUUSD like institutions.</p>
   </section>
 
-  <!-- Smart Money Concepts Section -->
   <section id="smc">
     <h2>Smart Money Concepts (SMC)</h2>
-    <p>
-      Smart Money Concepts is about understanding how the largest market participants 
-      — banks, hedge funds, and institutions — manipulate price to capture liquidity 
-      and maximize profits. Retail traders often get trapped, while institutions 
-      quietly build their positions. 
-    </p>
-    <p>
-      By studying SMC, you learn to identify:
-    </p>
     <ul>
-      <li>
-        <strong>Liquidity Grabs:</strong> Stop hunts that trap retail traders.
-        <br>
-        <img src="https://www.tradingview.com/x/LiquidityGrabExample.png" alt="Liquidity Grab Chart" class="chart" 
-             onclick="openModal('LiquidityGrab', this.src)">
-      </li>
-      <li>
-        <strong>Fair Value Gaps (FVGs):</strong> Imbalances in price action that signal institutional moves.
-        <br>
-        <img src="https://www.tradingview.com/x/FairValueGapExample.png" alt="Fair Value Gap Chart" class="chart" 
-             onclick="openModal('FVG', this.src)">
-      </li>
-      <li>
-        <strong>Premium & Discount Zones:</strong> Where price is overvalued or undervalued.
-        <br>
-        <img src="https://www.tradingview.com/x/PremiumDiscountZoneExample.png" alt="Premium/Discount Zone Chart" class="chart" 
-             onclick="openModal('PDZone', this.src)">
-      </li>
-      <li>
-        <strong>Mitigation Blocks:</strong> Levels where institutions rebalance their positions.
-        <br>
-        <img src="https://www.tradingview.com/x/MitigationBlockExample.png" alt="Mitigation Block Chart" class="chart" 
-             onclick="openModal('Mitigation', this.src)">
-      </li>
+      <li><strong>Liquidity Grabs:</strong> <img src="charts/liquiditygrab.png" alt="Liquidity Grab" class="chart" onclick="openModal('LiquidityGrab')"></li>
+      <li><strong>Fair Value Gaps:</strong> <img src="charts/fairvaluegap.png" alt="FVG" class="chart" onclick="openModal('FVG')"></li>
+      <li><strong>Premium & Discount Zones:</strong> <img src="charts/premiumdiscount.png" alt="PD Zone" class="chart" onclick="openModal('PDZone')"></li>
+      <li><strong>Mitigation Blocks:</strong> <img src="charts/mitigation.png" alt="Mitigation" class="chart" onclick="openModal('Mitigation')"></li>
     </ul>
     <blockquote>"The market is designed to transfer wealth from the impatient to the patient."</blockquote>
   </section>
 
-  <!-- Liquidity Section -->
   <section id="liquidity">
     <h2>Liquidity</h2>
-    <p>
-      Liquidity is the fuel of the forex market. Institutions require liquidity 
-      to fill their massive orders. They often create fake breakouts or push 
-      the market into retail stop-loss zones to capture this liquidity. 
-    </p>
-    <p>
-      Understanding liquidity allows traders to anticipate:
-    </p>
-    <ul>
-      <li>Where retail stop-losses are likely placed.</li>
-      <li>Why false breakouts occur before big moves.</li>
-      <li>How institutions engineer liquidity grabs before the trend continues.</li>
-    </ul>
-    <blockquote>"Liquidity is not random — it’s the lifeblood of institutional trading."</blockquote>
+    <p>Institutions manipulate liquidity to execute large orders. Understanding this helps predict market moves.</p>
   </section>
 
-  <!-- Order Flow Section -->
   <section id="orderflow">
-    <h2>Institutional Order Flow</h2>
-    <p>
-      Order flow is the trail left behind by institutional players. 
-      It shows where smart money is accumulating or distributing positions. 
-      Learning to read order flow helps traders align with the true market direction. 
-    </p>
-    <p>
-      Key principles of order flow include:
-    </p>
-    <ul>
-      <li><strong>Accumulation:</strong> Quiet buying before a major bullish move.</li>
-      <li><strong>Distribution:</strong> Quiet selling before a major bearish move.</li>
-      <li><strong>Break of Structure (BOS):</strong> Confirmation of institutional intent.</li>
-      <li><strong>Change of Character (ChoCH):</strong> The early sign of a trend reversal.</li>
-    </ul>
-    <blockquote>"Follow the footprints of smart money — they always leave a trail."</blockquote>
+    <h2>Order Flow</h2>
+    <p>Order flow shows where smart money is accumulating or distributing. Aligning with it increases trading success.</p>
   </section>
 
-  <!-- Quotes Section -->
   <section id="quotes">
     <h2>Trading Quotes</h2>
     <blockquote>"The trend is your friend, until it bends at the end."</blockquote>
@@ -293,7 +188,7 @@
     <p>© 2025 Bullet Forex King — All Rights Reserved</p>
   </footer>
 
-  <!-- Modal for charts -->
+  <!-- Modal -->
   <div id="chartModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImg">
@@ -312,10 +207,25 @@
     const modalCaption = document.getElementById("modalCaption");
 
     const charts = {
-      "LiquidityGrab": {
-        src: "https://www.tradingview.com/x/LiquidityGrabExample.png",
-        caption: "Liquidity Grabs: Institutions trigger stop-loss zones to capture liquidity."
-      },
-      "FVG": {
-        src: "https://www.tradingview.com/x/FairValueGapExample.png",
-        caption: "Fair Value Gaps: Gaps in price action where smart money takes positions."
+      "LiquidityGrab": { src: "charts/liquiditygrab.png", caption: "Liquidity Grabs on XAUUSD" },
+      "FVG": { src: "charts/fairvaluegap.png", caption: "Fair Value Gaps on XAUUSD" },
+      "PDZone": { src: "charts/premiumdiscount.png", caption: "Premium & Discount Zones on XAUUSD" },
+      "Mitigation": { src: "charts/mitigation.png", caption: "Mitigation Blocks on XAUUSD" }
+    };
+
+    function openModal(key) {
+      modal.style.display = "flex";
+      modalImg.src = charts[key].src;
+      modalCaption.textContent = charts[key].caption;
+    }
+    function closeModal() { modal.style.display = "none"; }
+    function switchModal(key) {
+      modalImg.src = charts[key].src;
+      modalCaption.textContent = charts[key].caption;
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) { closeModal(); }
+    }
+  </script>
+</body>
+</html>
