@@ -50,9 +50,137 @@
       color: #ccc;
     }
 
+    /* Sections */
     section {
       max-width: 900px;
       margin: 50px auto;
       background: rgba(0,0,0,0.7);
       padding: 30px;
-      border-radius: 12px
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,255,200,0.3);
+    }
+    section h2 {
+      color: #00ffcc;
+      margin-bottom: 15px;
+    }
+    section p {
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    /* Quotes */
+    .quote {
+      font-style: italic;
+      color: #ffeb3b;
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      border-left: 4px solid #00ffcc;
+    }
+
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+    }
+    input[type="submit"] {
+      background: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    input[type="submit"]:hover {
+      background: #00cca0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.9);
+      color: #aaa;
+      margin-top: 50px;
+    }
+
+    a {
+      color: #ffeb3b;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#quotes">Quotes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home -->
+  <header id="home">
+    <h1>Bullet FX King</h1>
+    <p>Smart Money Concept (SMC) • Liquidity • Forex Trading</p>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am <strong>Lifasi Malumo</strong>, founder of Bullet FX King.  
+      My trading journey began with retail strategies like indicators and patterns, 
+      but I soon realized the market is driven by <strong>institutional order flow</strong>.  
+      After years of study, I developed my own liquidity-based framework 
+      that helps traders understand <strong>true market structure</strong> and achieve consistency.
+    </p>
+  </section>
+
+  <!-- Strategy -->
+  <section id="strategy">
+    <h2>My Strategy</h2>
+    <p>
+      My trading is based on <strong>Smart Money Concepts (SMC) + Liquidity</strong>.  
+      I focus on identifying institutional footprints and high-probability setups.  
+    </p>
+    <ul>
+      <li>Liquidity Grabs – catching stop hunts before reversals</li>
+      <li>Fair Value Gaps (FVGs) – trading price imbalances</li>
+      <li>Order Blocks – mapping institutional footprints</li>
+      <li>Premium & Discount Zones – timing entries with precision</li>
+      <li>Mitigation – tracking how institutions reduce risk</li>
+    </ul>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Services</h2>
+    <p>
+      ✅ <strong>Mentorship Program</strong> – Step-by-step Smart Money Concepts training  
+      ✅ <strong>Signals & Trade Ideas</strong> – Accurate setups delivered directly  
+      ✅ <strong>Market Analysis Reports</strong> – Weekly outlooks with OBs, FVGs, and liquidity pools  
+    </p>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <p><em>"Before joining Bullet Forex King, I was blowing accounts. Now I understand how the market truly moves." — Student A</em></p>
+    <p><em>"The mentorship changed my trading forever. Lifasi makes SMC simple and practical." — Student B</em></p>
+    <p><em>"His
