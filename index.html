@@ -9,16 +9,15 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: #fff;
-      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)),
-                  url("https://images.unsplash.com/photo-1561414927-6d86591d0c4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80") no-repeat center center fixed;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+                  url("https://images.unsplash.com/photo-1612831661460-bf8329b4731d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTkzNzR8MHwxfGFsbHwxfHxmb3JleHxlbnwwfHx8fDE2OTQ1Njk0NjE&ixlib=rb-4.0.3&q=80&w=1600") no-repeat center center fixed;
       background-size: cover;
     }
 
-    /* Navbar */
     nav {
       display: flex;
       justify-content: center;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       padding: 15px;
       position: sticky;
       top: 0;
@@ -35,7 +34,6 @@
       color: #00ffcc;
     }
 
-    /* Header */
     header {
       text-align: center;
       padding: 60px 20px;
@@ -53,7 +51,7 @@
     section {
       max-width: 900px;
       margin: 50px auto;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.75);
       padding: 30px;
       border-radius: 12px;
     }
@@ -74,10 +72,94 @@
     footer {
       text-align: center;
       padding: 20px;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       margin-top: 50px;
       font-size: 0.9rem;
       color: #aaa;
+    }
+
+    footer p.contact {
+      color: #00ffcc;
+      margin: 5px 0;
+    }
+
+    img.chart {
+      max-width: 100%;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    img.chart:hover {
+      transform: scale(1.02);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffcc;
+    }
+
+    .modal-caption {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #00ffcc;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .modal-toc {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .modal-toc button {
+      background: #00ffcc;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .modal-toc button:hover {
+      background: #ffeb3b;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close:hover {
+      color: #00ffcc;
     }
   </style>
 </head>
@@ -127,11 +209,30 @@
       By studying SMC, you learn to identify:
     </p>
     <ul>
-      <li><strong>Liquidity Grabs:</strong> Stop hunts that trap retail traders.</li>
-      <li><strong>Fair Value Gaps (FVGs):</strong> Imbalances in price action that 
-          signal institutional moves.</li>
-      <li><strong>Premium & Discount Zones:</strong> Where price is overvalued or undervalued.</li>
-      <li><strong>Mitigation Blocks:</strong> Levels where institutions rebalance their positions.</li>
+      <li>
+        <strong>Liquidity Grabs:</strong> Stop hunts that trap retail traders.
+        <br>
+        <img src="https://www.tradingview.com/x/LiquidityGrabExample.png" alt="Liquidity Grab Chart" class="chart" 
+             onclick="openModal('LiquidityGrab', this.src)">
+      </li>
+      <li>
+        <strong>Fair Value Gaps (FVGs):</strong> Imbalances in price action that signal institutional moves.
+        <br>
+        <img src="https://www.tradingview.com/x/FairValueGapExample.png" alt="Fair Value Gap Chart" class="chart" 
+             onclick="openModal('FVG', this.src)">
+      </li>
+      <li>
+        <strong>Premium & Discount Zones:</strong> Where price is overvalued or undervalued.
+        <br>
+        <img src="https://www.tradingview.com/x/PremiumDiscountZoneExample.png" alt="Premium/Discount Zone Chart" class="chart" 
+             onclick="openModal('PDZone', this.src)">
+      </li>
+      <li>
+        <strong>Mitigation Blocks:</strong> Levels where institutions rebalance their positions.
+        <br>
+        <img src="https://www.tradingview.com/x/MitigationBlockExample.png" alt="Mitigation Block Chart" class="chart" 
+             onclick="openModal('Mitigation', this.src)">
+      </li>
     </ul>
     <blockquote>"The market is designed to transfer wealth from the impatient to the patient."</blockquote>
   </section>
@@ -186,7 +287,73 @@
 
   <!-- Footer -->
   <footer>
-    © 2025 Bullet Forex King — All Rights Reserved
+    <p class="contact">Contact: +264 81 723 9818 | Email: lifasimalumo48@gmail.com</p>
+    <p>© 2025 Bullet Forex King — All Rights Reserved</p>
   </footer>
+
+  <!-- Modal for charts -->
+  <div id="chartModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div class="modal-caption" id="modalCaption"></div>
+    <div class="modal-toc">
+      <button onclick="switchModal('LiquidityGrab')">Liquidity Grab</button>
+      <button onclick="switchModal('FVG')">Fair Value Gap</button>
+      <button onclick="switchModal('PDZone')">Premium/Discount</button>
+      <button onclick="switchModal('Mitigation')">Mitigation Block</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("chartModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalCaption = document.getElementById("modalCaption");
+
+    const charts = {
+      "LiquidityGrab": {
+        src: "https://www.tradingview.com/x/LiquidityGrabExample.png",
+        caption: "Liquidity Grabs: Institutions trigger stop-loss zones to capture liquidity."
+      },
+      "FVG": {
+        src: "https://www.tradingview.com/x/FairValueGapExample.png",
+        caption: "Fair Value Gaps: Gaps in price action where smart money takes positions."
+      },
+      "PDZone": {
+        src: "https://www.tradingview.com/x/PremiumDiscountZoneExample.png",
+        caption: "Premium & Discount Zones: Areas where price is overbought or oversold relative to institutional levels."
+      },
+      "Mitigation": {
+        src: "https://www.tradingview.com/x/MitigationBlockExample.png",
+        caption: "Mitigation Blocks: Zones where institutions neutralize excess orders before continuation."
+      }
+    };
+
+    function openModal(key, src=null) {
+      modal.style.display = "flex";
+      if(src) {
+        modalImg.src = src;
+      } else {
+        modalImg.src = charts[key].src;
+      }
+      modalCaption.textContent = charts[key].caption;
+    }
+
+    function switchModal(key) {
+      modalImg.src = charts[key].src;
+      modalCaption.textContent = charts[key].caption;
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalImg.src = "";
+      modalCaption.textContent = "";
+    }
+
+    modal.addEventListener("click", function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
-</html>
+          </html>
