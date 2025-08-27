@@ -5,238 +5,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bullet Forex King</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      color: #eaeaea;
-      background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
-                  url("charts/candlestick-bg.png") center/cover fixed;
-      background-blend-mode: multiply;
-    }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(90deg, rgba(0,0,0,0.85), rgba(25,25,25,0.85));
-      border-bottom: 2px solid #00ffaa;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      color: #00ffaa;
-      margin: 0.5rem 0;
-      text-shadow: 0 0 10px rgba(0,255,170,0.4);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 700px;
-      margin: auto;
+      margin: 0;
+      background: #0d0d0d;
+      color: #f2f2f2;
       line-height: 1.6;
     }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.85);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #f2f2f2;
-      font-weight: bold;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-
-    nav a:hover {
-      color: #00ffaa;
-      text-shadow: 0 0 10px rgba(0,255,170,0.5);
-    }
-
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
-      background: rgba(20, 20, 20, 0.85);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    section:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(0,255,170,0.3);
-    }
-
-    section h2 {
-      color: #00ffaa;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ddd;
-    }
-
-    ul {
-      margin-top: 1rem;
-      padding-left: 1.5rem;
-      color: #ccc;
-    }
-
-    ul li {
-      margin-bottom: 0.8rem;
-    }
-
-    section img {
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 1rem;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-    }
-
-    footer {
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
       text-align: center;
-      padding: 1.5rem;
-      background: rgba(0, 0, 0, 0.85);
-      color: #aaa;
-      margin-top: 2rem;
-      border-top: 2px solid #00ffaa;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      background: #00ffaa;
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
+      font-size: 1.8rem;
       font-weight: bold;
-      transition: background 0.3s, box-shadow 0.3s;
+      color: gold;
     }
-
-    .cta-btn:hover {
-      background: #00e699;
-      box-shadow: 0 0 15px rgba(0,255,170,0.5);
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
     }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      nav { flex-direction: column; gap: 1rem; }
-      section { margin: 2rem 1rem; }
+    h2 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+    .chart-container {
+      margin: 20px 0;
+    }
+    .risk-box {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+    label {
+      display: block;
+      margin: 8px 0 4px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background: gold;
+      color: black;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e6c200;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: lightgreen;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#welcome">Welcome</a>
-    <a href="#smc">SMC</a>
-    <a href="#liquidity">Liquidity</a>
-    <a href="#orderflow">Order Flow</a>
-    <a href="#zones">Zones</a>
-    <a href="#quotes">Quotes</a>
-  </nav>
 
-  <header>
-    <h1>Bullet Forex King</h1>
-    <p>Master Smart Money Concepts, read the market like institutions, and level up your forex trading with precision strategies.</p>
-  </header>
+  <header>💹 Bullet Forex King</header>
 
-  <section id="welcome">
-    <h2>Welcome</h2>
-    <p>
-      Welcome to <strong>Bullet Forex King</strong> — your resource for learning how professional traders approach the forex markets.
-      Whether you're a beginner or an experienced trader, this site will guide you through concepts used by institutions to control liquidity, trigger reversals, and create profitable setups.
-    </p>
-    <ul>
-      <li>Understand how big players manipulate price.</li>
-      <li>Learn to spot liquidity pools and order blocks.</li>
-      <li>Develop your own trading plan based on institutional methods.</li>
-    </ul>
+  <section>
+    <h2>📈 Live XAUUSD Chart</h2>
+    <p>Track gold price movements in real-time. This chart updates automatically:</p>
+    <div class="chart-container">
+      <!-- TradingView Widget -->
+      <div class="tradingview-widget-container">
+        <div id="tradingview_chart"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+          new TradingView.widget({
+            "width": "100%",
+            "height": 500,
+            "symbol": "OANDA:XAUUSD",
+            "interval": "15",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#000000",
+            "enable_publishing": false,
+            "hide_top_toolbar": false,
+            "save_image": false,
+            "container_id": "tradingview_chart"
+          });
+        </script>
+      </div>
+    </div>
   </section>
 
-  <section id="smc">
-    <h2>Smart Money Concepts (SMC)</h2>
-    <p>
-      Smart Money Concepts (SMC) focuses on how major financial institutions move the markets. Unlike retail strategies that rely on lagging indicators, SMC is based on price action, liquidity engineering, and order flow.
-    </p>
-    <ul>
-      <li><strong>Order Blocks:</strong> Zones where institutions place large buy or sell orders.</li>
-      <li><strong>Fair Value Gaps:</strong> Imbalances in price that tend to be filled before continuation.</li>
-      <li><strong>Market Structure:</strong> Identifying the true trend using swing highs and lows.</li>
-    </ul>
-    <img src="charts/fairvaluegap.png" alt="Fair Value Gap Example">
+  <section>
+    <h2>🧮 Forex Risk Calculator</h2>
+    <p>Use this tool to calculate your lot size based on risk percentage.</p>
+
+    <div class="risk-box">
+      <label for="balance">Account Balance ($):</label>
+      <input type="number" id="balance" placeholder="e.g. 1000">
+
+      <label for="risk">Risk % per Trade:</label>
+      <input type="number" id="risk" placeholder="e.g. 2">
+
+      <label for="stoploss">Stop Loss (pips):</label>
+      <input type="number" id="stoploss" placeholder="e.g. 30">
+
+      <label for="pipvalue">Pip Value ($ per lot):</label>
+      <input type="number" id="pipvalue" placeholder="e.g. 10">
+
+      <button onclick="calculateRisk()">Calculate Lot Size</button>
+
+      <div id="result"></div>
+    </div>
   </section>
 
-  <section id="liquidity">
-    <h2>Liquidity</h2>
-    <p>
-      Liquidity is the lifeblood of forex trading. Institutions manipulate liquidity to enter and exit large positions without causing massive price shocks. Understanding where liquidity lies is crucial.
-    </p>
-    <ul>
-      <li>Stop hunts occur around previous highs and lows.</li>
-      <li>Liquidity zones often act as reversal points.</li>
-      <li>Avoid trading in the middle of a range; wait for liquidity sweeps.</li>
-    </ul>
-    <img src="charts/liquiditygrab.png" alt="Liquidity Grab Example">
-  </section>
+  <script>
+    function calculateRisk() {
+      const balance = parseFloat(document.getElementById('balance').value);
+      const risk = parseFloat(document.getElementById('risk').value);
+      const stoploss = parseFloat(document.getElementById('stoploss').value);
+      const pipvalue = parseFloat(document.getElementById('pipvalue').value);
 
-  <section id="orderflow">
-    <h2>Order Flow</h2>
-    <p>
-      Order flow analysis allows you to align with institutional moves rather than fighting them. It involves observing how orders are filled and where imbalance remains in the market.
-    </p>
-    <ul>
-      <li>Watch for mitigation blocks — areas where price returns to fill unexecuted orders.</li>
-      <li>Track market sentiment shifts to anticipate continuation or reversal.</li>
-      <li>Combine with premium/discount zones for optimal entry.</li>
-    </ul>
-    <img src="charts/mitigation.png" alt="Mitigation Block Example">
-  </section>
+      if (isNaN(balance) || isNaN(risk) || isNaN(stoploss) || isNaN(pipvalue)) {
+        document.getElementById('result').innerText = "⚠️ Please fill all fields.";
+        return;
+      }
 
-  <section id="zones">
-    <h2>Premium & Discount Zones</h2>
-    <p>
-      Price operates within a constant tug-of-war between premium (selling) and discount (buying) zones. Entering in the right zone maximizes your risk-to-reward ratio.
-    </p>
-    <ul>
-      <li>Premium Zone: Look for selling opportunities above equilibrium.</li>
-      <li>Discount Zone: Look for buying opportunities below equilibrium.</li>
-      <li>Confluence with liquidity grabs = high-probability trades.</li>
-    </ul>
-    <img src="charts/premiumdiscount.png" alt="Premium and Discount Zones Example">
-  </section>
+      const riskAmount = balance * (risk / 100);
+      const lotSize = riskAmount / (stoploss * pipvalue);
 
-  <section id="quotes">
-    <h2>Inspirational Quotes</h2>
-    <p><i>"The market is a device for transferring money from the impatient to the patient." — Warren Buffett</i></p>
-    <p><i>"Risk comes from not knowing what you are doing." — Warren Buffett</i></p>
-    <p><i>"Trade like a sniper, not like a machine gunner." — Anonymous</i></p>
-  </section>
+      document.getElementById('result').innerText = 
+        `✅ Recommended Lot Size: ${lotSize.toFixed(2)} lots`;
+    }
+  </script>
 
-  <section id="cta">
-    <h2>Start Your Trading Journey</h2>
-    <p>
-      Join our growing community of traders and start mastering the same techniques used by institutional players.
-      We provide free resources, charts, and trade breakdowns to guide you step-by-step.
-    </p>
-    <a href="https://t.me/yourlink" class="cta-btn">Join Now</a>
-  </section>
-
-  <footer>
-    <p>© 2025 Bullet Forex King. All rights reserved.</p>
-  </footer>
 </body>
 </html>
