@@ -1048,12 +1048,448 @@
           <i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>
           <h2>Live Market Analysis</h2>
         </div>
-        <p class="
-              
+        <p class="section-subtitle">Real-time charts with Smart Money Concepts annotations for XAUUSD, EURUSD, and other major pairs</p>
+      </div>
+      <div class="card">
+        <div id="tradingview_chart" style="height:520px;"></div>
+      </div>
+    </section>
 
-   
+    <!-- CALCULATOR -->
+    <section id="calculator">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-calculator" style="color:var(--primary)"></i>
+          <h2>Advanced Forex Risk Calculator</h2>
+        </div>
+        <p class="section-subtitle">Calculate precise position sizing with advanced risk parameters and trading metrics</p>
+      </div>
+      <div class="card">
+        <div class="calc">
+          <div class="row">
+            <div>
+              <label for="balance">Account Balance (USD)</label>
+              <input id="balance" type="number" placeholder="e.g. 5000">
+            </div>
+            <div>
+              <label for="risk">Risk % per Trade</label>
+              <input id="risk" type="number" placeholder="e.g. 2" value="2">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="stoploss">Stop Loss (pips)</label>
+              <input id="stoploss" type="number" placeholder="e.g. 30">
+            </div>
+            <div>
+              <label for="pipvalue">Pip Value ($ per lot)</label>
+              <input id="pipvalue" type="number" placeholder="e.g. 10">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="entry">Entry Price</label>
+              <input id="entry" type="number" placeholder="e.g. 1.0850">
+            </div>
+            <div>
+              <label for="pair">Currency Pair</label>
+              <select id="pair">
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="USDJPY">USD/JPY</option>
+                <option value="XAUUSD">XAU/USD (Gold)</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="calculateRisk()"><i class="fa-solid fa-equals"></i> Calculate Position Size</button>
+          <div id="result" class="result muted"></div>
+          
+          <div class="calculator-advanced">
+            <button class="calculator-toggle" onclick="toggleAdvanced()">
+              <i class="fa-solid fa-caret-down" id="advanced-icon"></i>
+              Advanced Risk Metrics
+            </button>
+            <div id="advanced-metrics" style="display: none;">
+              <div class="row">
+                <div>
+                  <label for="rrr">Risk/Reward Ratio</label>
+                  <input id="rrr" type="number" placeholder="e.g. 1.5" value="1.5">
+                </div>
+                <div>
+                  <label for="winrate">Win Rate (%)</label>
+                  <input id="winrate" type="number" placeholder="e.g. 60">
+                </div>
+              </div>
+              <button class="btn btn-ghost" onclick="calculateAdvanced()"><i class="fa-solid fa-calculator"></i> Calculate Performance Metrics</button>
+              <div id="advanced-result" class="result muted"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i>
+          <h2>Smart Money Concepts Mastery</h2>
+        </div>
+        <p class="section-subtitle">Learn institutional trading strategies and how to identify smart money movements in the market</p>
+      </div>
 
+      <div class="grid">
+        <!-- Liquidity Pools -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-fill-drip"></i></div> Liquidity Pools & Sweeps</h3>
+          <p>Liquidity pools are price levels where a large cluster of stop orders sit—commonly around obvious swing highs and lows. Institutions target these pools to generate the volume needed for large moves.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> Look for equal highs/lows that get taken out with momentum but quickly reverse—this indicates a liquidity grab. The subsequent move often targets the opposite side's liquidity.</div>
+          <div class="tip"><strong>Trading Tip:</strong> When price aggressively taps a liquidity pool and immediately rejects, it often signals a liquidity grab. Combine with a structure break (BOS/CHoCH) for higher-probability entries.</div>
+        </article>
+
+        <!-- Order Blocks -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-layer-group"></i></div> Order Blocks & Mitigation</h3>
+          <p>An order block is the final bullish/bearish candle before a strong impulsive move. These zones mark areas where institutions placed significant orders. Mitigation occurs when price returns to these blocks to "fill" remaining orders.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> The most powerful order blocks form after a liquidity sweep. The mitigation block often provides the highest probability entry for the next impulsive move.</div>
+          <div class="tip"><strong>Trading Tip:</strong> After a sharp move, price frequently revisits the origin candle (order block) to mitigate institutional orders. Look for rejection wicks, engulfing patterns, or LTF BOS as confirmation.</div>
+        </article>
+
+        <!-- Market Structure -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-diagram-project"></i></div> Market Structure Shifts</h3>
+          <p>Structure is the backbone of analysis: sequences of HH/HL denote bullish conditions; LH/LL denote bearish conditions. A Break of Structure (BOS) confirms momentum, while a Change of Character (CHoCH) signals potential reversal.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> The first pullback after a BOS often creates the most efficient order block. A CHoCH that occurs after a liquidity sweep is a high-probability reversal signal.</div>
+          <div class="tip"><strong>Trading Tip:</strong> Align with the higher-timeframe trend. If the Daily is bullish (HH+HL), seek longs; use lower-timeframe CHoCH/BOS to trigger entries.</div>
+        </article>
+
+        <!-- Supply & Demand -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div> Supply & Demand Zones</h3>
+          <p>Zones form where sharp moves leave imbalances—revealing where buyers or sellers dominated. These zones become future targets for price returns.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> The strongest zones form after a liquidity sweep and BOS. These zones often align with institutional order blocks and previous daily/weekly highs/lows.</div>
+          <div class="tip"><strong>Trading Tip:</strong> In bullish trends, buy at demand; in bearish trends, sell at supply. Wait for price confirmation (candlesticks or structure shifts).</div>
+        </article>
+
+        <!-- FVG -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-grip-lines-vertical"></i></div> Fair Value Gaps (FVG)</h3>
+          <p>FVGs are three-candle imbalances where the first and third candles don't overlap, leaving an inefficiency that price tends to rebalance. These act as mini supply/demand zones.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> FVGs that form after a liquidity sweep and BOS often become the "roadmap" for price, acting as support in bullish trends and resistance in bearish trends.</div>
+          <div class="tip"><strong>Trading Tip:</strong> Mark FVGs on 1H/4H. When price retraces into the gap and rejects, continuation is likely—especially when aligned with OBs and HTF bias.</div>
+        </article>
+
+        <!-- Mitigation Blocks -->
+        <article class="card">
+          <h3><div class="card-icon"><i class="fa-solid fa-bullseye"></i></div> Mitigation Blocks & Entries</h3>
+          <p>When price revisits a prior order block to close remaining institutional orders, the level acts as a mitigation block—often giving precise entries with minimal risk.</p>
+          <div class="tip"><strong>Advanced Insight:</strong> The best mitigation entries occur when a liquidity sweep happens first, then price returns to the mitigation block. This often creates a "liquidity vacuum" that propels price.</div>
+          <div class="tip"><strong>Trading Tip:</strong> Look for mitigation at previously violated OBs, ideally paired with a liquidity sweep and BOS/CHoCH confluence.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-quote-left" style="color:var(--primary)"></i>
+          <h2>Success Stories</h2>
+        </div>
+        <p class="section-subtitle">Hear from traders who have transformed their trading using our Smart Money Concepts approach</p>
+      </div>
+      
+      <div class="grid cols-3">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The liquidity concepts completely changed how I view the markets. I've increased my win rate by 40% since implementing these strategies."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div class="testimonial-info">
+              <h4>John M.</h4>
+              <p>Forex Trader, 3 years</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The order block mitigation strategy alone was worth the price of the course. I'm now consistently profitable for the first time in my trading career."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SK</div>
+            <div class="testimonial-info">
+              <h4>Sarah K.</h4>
+              <p>Swing Trader, 2 years</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The mentorship program helped me understand how institutions actually trade. I've doubled my account in 6 months using these concepts."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TP</div>
+            <div class="testimonial-info">
+              <h4>Thomas P.</h4>
+              <p>Day Trader, 4 years</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-envelope" style="color:var(--primary)"></i>
+          <h2>Contact Us</h2>
+        </div>
+        <p class="section-subtitle">Reach out for training, mentorship, or questions about our trading strategies</p>
+      </div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</h3>
+          <p class="muted">Bullet Forex King</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-phone"></i> +264 81 723 9818</h3>
+          <p class="muted">Call or WhatsApp</p>
+          <p><a class="btn btn-ghost" href="tel:+264817239818"><i class="fa-solid fa-phone-volume"></i> Call Now</a></p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-at"></i> info@bulletforexking.com</h3>
+          <p class="muted">For training, mentorship, and signals</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-user-tie"></i> Founder</h3>
+          <p><strong>Lifasi Malumo Lucky</strong><br/>Core Founder &amp; CEO</p>
+          <div class="social" style="margin-top: 16px;">
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="title">Bullet Forex King</div>
+          <p class="footer-description">Advanced Forex Education & Smart Money Concepts for serious traders.</p>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Education</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Money Concepts</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Strategies</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Risk Management</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Mentorship Program</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Video Courses</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Calculators</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Journal</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="disclaimer">
+        <strong>Risk Disclaimer:</strong> Trading forex and CFDs carries a high level of risk and may not be suitable for all investors.
+        Past performance is not indicative of future results. The information on this website is for educational purposes only.
+        We do not guarantee any results or profits. You may lose some or all of your invested capital.
+      </p>
+      <p class="copy">© 2023–2025 Bullet Forex King. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+    // TradingView
+    new TradingView.widget({
+      width: "100%",
+      height: 520,
+      symbol: "OANDA:XAUUSD",
+      interval: "15",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#000000",
+      enable_publishing: false,
+      hide_top_toolbar: false,
+      studies: [
+        "MASimple@tv-basicstudies"
+      ],
+      container_id: "tradingview_chart"
+    });
+
+    // Mobile Navigation
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      navToggle.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Smooth scroll + active link
+    document.querySelectorAll('.links a, .footer-links a').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if(!id.startsWith('#')) return;
+        e.preventDefault();
+        const el = document.querySelector(id);
+        if(el){
+          // Close mobile menu if open
+          if(navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+          
+          window.scrollTo({top: el.offsetTop - 80, behavior:'smooth'});
+          document.querySelectorAll('.links a').forEach(x => x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Risk Calculator
+    function calculateRisk(){
+      const b = parseFloat(document.getElementById('balance').value);
+      const r = parseFloat(document.getElementById('risk').value);
+      const s = parseFloat(document.getElementById('stoploss').value);
+      const p = parseFloat(document.getElementById('pipvalue').value);
+      const out = document.getElementById('result');
+
+      if([b,r,s,p].some(x => isNaN(x) || x <= 0)){
+        out.className = 'result err';
+        out.textContent = 'Please enter valid positive numbers in all fields.';
+        return;
+      }
+      
+      const riskAmount = b * (r/100);
+      const lotSize = riskAmount / (s * p);
+      out.className = 'result ok';
+      out.innerHTML = `
+        <div><strong>Recommended Lot Size:</strong> ${lotSize.toFixed(2)} lots</div>
+        <div><strong>Risk Amount:</strong> $${riskAmount.toFixed(2)}</div>
+        <div><strong>Risk Percentage:</strong> ${r}% of account</div>
+      `;
+    }
+    
+    function calculateAdvanced() {
+      const rrr = parseFloat(document.getElementById('rrr').value);
+      const winrate = parseFloat(document.getElementById('winrate').value);
+      const out = document.getElementById('advanced-result');
+      
+      if(isNaN(rrr) || isNaN(winrate) || rrr <= 0 || winrate <= 0 || winrate >= 100) {
+        out.className = 'result err';
+        out.textContent = 'Please enter valid values for R:R ratio (＞0) and win rate (0-100).';
+        return;
+      }
+      
+      const expectancy = (winrate/100 * rrr) - ((1 - winrate/100) * 1);
+      const outText = expectancy > 0 ? 
+        `Positive expectancy of ${expectancy.toFixed(2)}R per trade. Keep it up!` :
+        `Negative expectancy of ${expectancy.toFixed(2)}R per trade. Improve your strategy.`;
+      
+      out.className = expectancy > 0 ? 'result ok' : 'result err';
+      out.innerHTML = `
+        <div><strong>Strategy Expectancy:</strong> ${expectancy.toFixed(2)}R per trade</div>
+        <div>${outText}</div>
+        <div style="margin-top: 10px; font-size: 0.9em;">Based on ${winrate}% win rate and 1:${rrr} risk-reward ratio</div>
+      `;
+    }
+    
+    function toggleAdvanced() {
+      const advanced = document.getElementById('advanced-metrics');
+      const icon = document.getElementById('advanced-icon');
+      
+      if(advanced.style.display === 'none') {
+        advanced.style.display = 'block';
+        icon.className = 'fa-solid fa-caret-up';
+      } else {
+        advanced.style.display = 'none';
+        icon.className = 'fa-solid fa-caret-down';
+      }
+    }
+    
+    // Auto-calculate pip value based on pair selection
+    document.getElementById('pair').addEventListener('change', function() {
+      const pipValueInput = document.getElementById('pipvalue');
+      const pairs = {
+        'EURUSD': 10,
+        'GBPUSD': 10,
+        'USDJPY': 9.5,
+        'XAUUSD': 1,
+        'other': 10
+      };
+      
+      pipValueInput.value = pairs[this.value];
+    });
+    
+    window.calculateRisk = calculateRisk;
+    window.calculateAdvanced = calculateAdvanced;
+    window.toggleAdvanced = toggleAdvanced;
+  </script>
+</body>
+</html>
 
 
 
