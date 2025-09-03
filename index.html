@@ -1,63 +1,219 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bullet Forex King — Windhoek, Namibia</title>
+  <title>Bullet Forex King — Advanced Forex Trading Education</title>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root{
       --primary:#ffd700;  /* gold */
+      --primary-dark:#d4af37;
       --secondary:#005bbc;/* deep blue */
+      --secondary-light:#1a73e8;
       --dark:#0b0b0f;     /* near-black */
       --dark-2:#121219;   /* card bg */
+      --dark-3:#1a1a24;
       --muted:#aab0c0;    /* muted text */
+      --light-muted:#d0d4dc;
       --edge:#222630;     /* borders */
       --success:#18c37e;
+      --success-light:#4cdb9d;
       --danger:#ff4b4b;
-      --radius:18px;
+      --danger-light:#ff6b6b;
+      --radius:16px;
+      --radius-lg:24px;
       --shadow:0 10px 30px rgba(0,0,0,.35);
+      --transition: all 0.3s ease;
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 20% -10%,rgba(0,91,188,.20),transparent 60%),
-                                     radial-gradient(1000px 500px at 110% 10%,rgba(255,215,0,.12),transparent 60%),
-                                     var(--dark);
-              color:#eef1f7; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+    html,body{
+      margin:0;
+      padding:0;
+      background:radial-gradient(1200px 600px at 20% -10%,rgba(0,91,188,.20),transparent 60%),
+                radial-gradient(1000px 500px at 110% 10%,rgba(255,215,0,.12),transparent 60%),
+                var(--dark);
+      color:#eef1f7; 
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      scroll-behavior: smooth;
+    }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
     /* Header / Nav */
     .nav{
-      position:sticky;top:0;z-index:50;
+      position:sticky;
+      top:0;
+      z-index:100;
       backdrop-filter: blur(10px);
-      background:linear-gradient(to right, rgba(11,11,15,.8), rgba(0,91,188,.25), rgba(11,11,15,.8));
+      background:linear-gradient(to right, rgba(11,11,15,.95), rgba(0,91,188,.25), rgba(11,11,15,.95));
       border-bottom:1px solid rgba(255,215,0,.15);
+      transition: var(--transition);
     }
-    .nav-inner{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:18px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
+    
+    .nav.scrolled {
+      background:rgba(11,11,15,.98);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    .nav-inner{
+      max-width:1200px;
+      margin:auto;
+      padding:12px 20px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:space-between;
+    }
+    
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    
     .badge{
-      width:46px;height:46px;border-radius:50%;
-      display:grid;place-items:center;font-weight:800;letter-spacing:.5px;
-      color:#0b0b0f;background:linear-gradient(135deg,var(--primary),#ffd000);
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:.5px;
+      color:#0b0b0f;
+      background:linear-gradient(135deg,var(--primary),#ffd000);
       box-shadow:0 0 22px rgba(255,215,0,.35), inset 0 0 0 2px rgba(0,0,0,.3);
+      transition: var(--transition);
     }
-    .brand .title{font-size:1.25rem;font-weight:800;color:var(--primary)}
-    .brand .meta{font-size:.85rem;color:var(--muted)}
-    .links{display:flex;gap:12px;flex-wrap:wrap}
-    .links a{padding:8px 14px;border-radius:999px;border:1px solid transparent;color:#e9edf5}
-    .links a:hover,.links a.active{border-color:rgba(255,215,0,.35);background:rgba(255,215,0,.12);color:var(--primary)}
+    
+    .brand:hover .badge {
+      transform: rotate(15deg);
+      box-shadow:0 0 26px rgba(255,215,0,.5), inset 0 0 0 2px rgba(0,0,0,.3);
+    }
+    
+    .brand .title{
+      font-size:1.25rem;
+      font-weight:800;
+      color:var(--primary);
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .brand .meta{
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .links{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    
+    .links a{
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:#e9edf5;
+      transition: var(--transition);
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .links a:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+      transition: var(--transition);
+    }
+    
+    .links a:hover:before,
+    .links a.active:before {
+      left: 100%;
+    }
+    
+    .links a:hover,
+    .links a.active{
+      border-color:rgba(255,215,0,.35);
+      background:rgba(255,215,0,.12);
+      color:var(--primary);
+    }
 
     /* Layout helpers */
-    .container{max-width:1200px;margin:auto;padding:28px 20px}
-    .grid{display:grid;gap:20px}
-    @media(min-width:900px){.grid.cols-2{grid-template-columns:1.2fr .8fr}}
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:28px 20px;
+    }
+    
+    .grid{
+      display:grid;
+      gap:24px;
+    }
+    
+    .cols-2 {
+      grid-template-columns: 1fr;
+    }
+    
+    .cols-3 {
+      grid-template-columns: 1fr;
+    }
+    
+    .cols-4 {
+      grid-template-columns: 1fr;
+    }
+    
+    @media(min-width:768px){
+      .cols-2{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .cols-3{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .cols-4{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+    
+    @media(min-width:992px){
+      .cols-3{
+        grid-template-columns:repeat(3, 1fr);
+      }
+      .cols-4{
+        grid-template-columns:repeat(4, 1fr);
+      }
+    }
 
     /* Hero */
     .hero{
-      margin-top:22px;border-radius:var(--radius);
+      margin-top:22px;
+      border-radius:var(--radius-lg);
       background:
         linear-gradient( to right, rgba(0,91,188,.18), rgba(0,0,0,.0) 40% ),
         linear-gradient( 180deg, rgba(255,215,0,.10), rgba(255,215,0,0) 55%),
@@ -65,73 +221,666 @@
       border:1px solid rgba(255,215,0,.15);
       box-shadow:var(--shadow);
       overflow:hidden;
+      position: relative;
     }
-    .hero-inner{padding:54px 34px}
-    .eyebrow{color:var(--muted);font-weight:600;letter-spacing:.15em;text-transform:uppercase}
-    .hero h1{margin:.35em 0 .25em;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;color:var(--primary);text-shadow:0 0 18px rgba(255,215,0,.18)}
-    .lead{max-width:800px;color:#dfe5f3;font-size:1.1rem}
-    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer}
-    .btn-primary{background:var(--primary);color:#141414;border-color:#cdb000}
-    .btn-primary:hover{filter:brightness(1.03)}
-    .btn-ghost{background:rgba(255,215,0,.12);color:var(--primary);border-color:rgba(255,215,0,.25)}
-    .btn-ghost:hover{background:rgba(255,215,0,.18)}
+    
+    .hero-inner{
+      padding:64px 34px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 1;
+    }
+    
+    .eyebrow{
+      color:var(--muted);
+      font-weight:600;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      font-size: 0.9rem;
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1{
+      margin:.35em 0 .25em;
+      font-size:clamp(2.2rem,5vw,3.5rem);
+      line-height:1.1;
+      background: linear-gradient(to right, var(--primary), var(--primary-dark), #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow:0 0 18px rgba(255,215,0,.18);
+      font-weight: 800;
+    }
+    
+    .lead{
+      max-width:800px;
+      color:#dfe5f3;
+      font-size:1.15rem;
+      margin-bottom: 28px;
+    }
+    
+    .cta{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 24px;
+      border-radius:12px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: var(--transition);
+    }
+    
+    .btn:hover:after {
+      left: 100%;
+    }
+    
+    .btn-primary{
+      background:var(--primary);
+      color:#141414;
+      border-color:#cdb000;
+      box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+    }
+    
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+    }
+    
+    .btn-ghost{
+      background:rgba(255,215,0,.12);
+      color:var(--primary);
+      border-color:rgba(255,215,0,.25);
+    }
+    
+    .btn-ghost:hover{
+      background:rgba(255,215,0,.18);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary-light);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--secondary-light);
+      transform: translateY(-2px);
+    }
 
     /* Section */
-    section{margin:36px 0}
-    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-    .section-title h2{margin:0;font-size:1.6rem;color:var(--primary)}
-    .muted{color:var(--muted)}
+    section{
+      margin:48px 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content: center;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    
+    .section-title h2{
+      margin:0;
+      font-size:2rem;
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .muted{
+      color:var(--muted);
+    }
 
     /* Cards */
     .card{
-      background:linear-gradient(180deg, rgba(255,215,0,.05), rgba(0,0,0,0));
-      border:1px solid var(--edge);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)
+      background:linear-gradient(180deg, var(--dark-2), var(--dark-3));
+      border:1px solid var(--edge);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .card h3{margin:0 0 10px;color:#fff}
-    .tip{margin-top:12px;padding:12px;border-left:3px solid var(--primary);background:rgba(255,215,0,.08);border-radius:8px}
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border-color: rgba(255,215,0,0.2);
+    }
+    
+    .card h3{
+      margin:0 0 12px;
+      color:#fff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      font-size: 1.2rem;
+    }
+    
+    .tip{
+      margin-top:16px;
+      padding:16px;
+      border-left:3px solid var(--primary);
+      background:rgba(255,215,0,.08);
+      border-radius:8px;
+      font-size: 0.95rem;
+    }
+    
+    .tip strong {
+      color: var(--primary);
+    }
 
     /* Calculator */
-    .calc{display:grid;gap:14px}
-    .row{display:grid;gap:12px}
-    @media(min-width:720px){.row{grid-template-columns:repeat(2,1fr)}}
-    label{font-weight:600;color:var(--primary)}
-    input{
-      width:100%;padding:12px;border-radius:10px;border:1px solid var(--edge);background:var(--dark-2);color:#eef1f7;
-      outline:none;box-shadow:inset 0 0 0 1px rgba(255,215,0,.0)
+    .calc{
+      display:grid;
+      gap:16px;
     }
-    input:focus{box-shadow:inset 0 0 0 1px rgba(255,215,0,.38)}
-    .result{margin-top:10px;font-weight:800}
-    .ok{color:var(--success)} .err{color:var(--danger)}
+    
+    .row{
+      display:grid;
+      gap:16px;
+    }
+    
+    @media(min-width:720px){
+      .row{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+    
+    label{
+      font-weight:600;
+      color:var(--primary);
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    input, select{
+      width:100%;
+      padding:14px;
+      border-radius:10px;
+      border:1px solid var(--edge);
+      background:var(--dark-2);
+      color:#eef1f7;
+      outline:none;
+      box-shadow:inset 0 0 0 1px rgba(255,215,0,.0);
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    
+    input:focus,
+    select:focus{
+      box-shadow:inset 0 0 0 1px rgba(255,215,0,.38);
+      border-color: var(--primary);
+    }
+    
+    .result{
+      margin-top:16px;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: var(--dark-2);
+      border: 1px solid var(--edge);
+      font-weight:800;
+      text-align: center;
+    }
+    
+    .ok{
+      color:var(--success);
+      background: rgba(24, 195, 126, 0.1);
+      border-color: rgba(24, 195, 126, 0.2);
+    }
+    
+    .err{
+      color:var(--danger);
+      background: rgba(255, 75, 75, 0.1);
+      border-color: rgba(255, 75, 75, 0.2);
+    }
+    
+    .calculator-advanced {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--edge);
+    }
+    
+    .calculator-toggle {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 0;
+    }
 
     /* Founder */
     .founder{
-      display:grid;gap:18px;align-items:center
+      display:grid;
+      gap:24px;
+      align-items:center;
     }
-    @media(min-width:780px){.founder{grid-template-columns:auto 1fr}}
+    
+    @media(min-width:780px){
+      .founder{
+        grid-template-columns:auto 1fr;
+      }
+    }
+    
     .avatar{
-      width:86px;height:86px;border-radius:50%;
+      width:100px;
+      height:100px;
+      border-radius:50%;
       background:linear-gradient(135deg,var(--primary),#ffec70);
-      display:grid;place-items:center;color:#111;font-weight:900;box-shadow:0 0 22px rgba(255,215,0,.35)
+      display:grid;
+      place-items:center;
+      color:#111;
+      font-weight:900;
+      font-size: 2rem;
+      box-shadow:0 0 22px rgba(255,215,0,.35);
+      border: 3px solid var(--dark);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      position: relative;
+    }
+    
+    .testimonial-card {
+      background: var(--dark-2);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--edge);
+      position: relative;
+    }
+    
+    .testimonial-card:before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 4rem;
+      color: rgba(255,215,0,0.1);
+      font-family: Georgia, serif;
+    }
+    
+    .testimonial-content {
+      margin-bottom: 20px;
+      font-style: italic;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--dark-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .testimonial-info h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    .testimonial-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Trading Strategies */
+    .strategy-card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .strategy-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .strategy-meta {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    
+    .strategy-tag {
+      padding: 4px 10px;
+      background: rgba(255,215,0,0.1);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .strategy-image {
+      height: 180px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 16px 0;
+      background: var(--dark-3);
+      position: relative;
+    }
+    
+    .strategy-image:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--secondary), var(--primary));
+      opacity: 0.2;
+    }
+    
+    .strategy-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 12px;
     }
 
     /* Footer */
     footer{
-      margin-top:48px;border-top:1px solid rgba(255,215,0,.15);
-      background:linear-gradient(to right, rgba(0,91,188,.16), rgba(11,11,15,.85));
+      margin-top:48px;
+      border-top:1px solid rgba(255,215,0,.15);
+      background:linear-gradient(to right, rgba(0,91,188,.16), rgba(11,11,15,.95));
+      padding: 48px 0 24px;
     }
-    .footer-inner{max-width:1200px;margin:auto;padding:28px 20px;text-align:center}
-    .social{display:flex;justify-content:center;gap:16px;margin:10px 0 14px}
-    .social a{font-size:1.2rem;color:#e8ecf7}
-    .social a:hover{color:var(--primary)}
-    .copy{color:var(--muted);font-size:.9rem}
-    .disclaimer{margin-top:12px;color:#a9afc0;font-size:.9rem;max-width:900px;margin-inline:auto}
+    
+    .footer-inner{
+      max-width:1200px;
+      margin:auto;
+      padding:0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .footer-brand .title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    
+    .footer-description {
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 300px;
+    }
+    
+    .footer-heading {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-heading:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: var(--muted);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .footer-links i {
+      font-size: 0.9rem;
+      width: 20px;
+    }
+    
+    .social{
+      display:flex;
+      gap:16px;
+      margin:20px 0;
+    }
+    
+    .social a{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: var(--dark-2);
+      color:#e8ecf7;
+      transition: var(--transition);
+    }
+    
+    .social a:hover{
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+    
+    .copy{
+      color:var(--muted);
+      font-size:.9rem;
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 30px;
+    }
+    
+    .disclaimer{
+      margin-top:24px;
+      color:#a9afc0;
+      font-size:.9rem;
+      max-width:900px;
+      margin-inline:auto;
+      text-align: center;
+      padding: 16px;
+      background: rgba(0,0,0,0.2);
+      border-radius: var(--radius);
+    }
+    
+    /* TradingView Widget */
+    .tradingview-widget-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      
+      .links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--dark);
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        border-top: 1px solid var(--edge);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+      
+      .links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .links a {
+        border-radius: var(--radius);
+        text-align: center;
+      }
+      
+      .hero-inner {
+        padding: 40px 20px;
+        text-align: center;
+      }
+      
+      .cta {
+        justify-content: center;
+      }
+      
+      .section-title {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav">
+  <nav class="nav" id="navbar">
     <div class="nav-inner">
       <div class="brand">
         <div class="badge">BFK</div>
@@ -140,10 +889,14 @@
           <div class="meta"><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</div>
         </div>
       </div>
-      <div class="links">
+      <button class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="links" id="navLinks">
         <a class="active" href="#home">Home</a>
         <a href="#charts">Charts</a>
         <a href="#calculator">Calculator</a>
+        <a href="#strategies">Strategies</a>
         <a href="#education">Education</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -153,24 +906,51 @@
 
   <!-- HERO -->
   <header id="home" class="container hero">
+    <div class="hero-pattern"></div>
     <div class="hero-inner">
-      <div class="eyebrow">BFK • Bullet Forex King</div>
+      <div class="eyebrow">BFK • Institutional Trading Concepts</div>
       <h1>Master Forex Trading with Precision</h1>
-      <p class="lead">Smart Money Concepts • Liquidity • Institutional Order Flow</p>
+      <p class="lead">Advanced Smart Money Concepts • Liquidity Analysis • Institutional Order Flow • Price Action Strategies</p>
       <div class="cta">
-        <a href="#calculator" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Risk Calculator</a>
+        <a href="#calculator" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Advanced Calculator</a>
         <a href="#education" class="btn btn-ghost"><i class="fa-solid fa-graduation-cap"></i> Learn SMC</a>
+        <a href="#strategies" class="btn btn-secondary"><i class="fa-solid fa-chart-line"></i> Trading Strategies</a>
       </div>
     </div>
   </header>
 
   <main class="container">
 
+    <!-- STATS -->
+    <section class="stats">
+      <div class="grid cols-4">
+        <div class="card" style="text-align: center;">
+          <h3>5+ Years</h3>
+          <p class="muted">Trading Experience</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3>500+</h3>
+          <p class="muted">Traders Educated</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3>15+</h3>
+          <p class="muted">Trading Strategies</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3>24/7</h3>
+          <p class="muted">Support Community</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section id="about">
-      <div class="section-title">
-        <i class="fa-solid fa-circle-info" style="color:var(--primary)"></i>
-        <h2>About Us</h2>
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-circle-info" style="color:var(--primary)"></i>
+          <h2>About Us</h2>
+        </div>
+        <p class="section-subtitle">Bullet Forex King is dedicated to transforming retail traders into institutional-level thinkers with advanced trading methodologies.</p>
       </div>
       <div class="grid cols-2">
         <article class="card">
@@ -184,210 +964,103 @@
           <div>
             <h3>Lifasi Malumo Lucky — Core Founder & CEO</h3>
             <p class="muted">Driven by a passion for trading and education, Lifasi founded Bullet Forex King to transform traders from all walks of life into confident, strategic, and consistently profitable market participants.</p>
+            <div class="strategy-meta">
+              <span class="strategy-tag">Price Action</span>
+              <span class="strategy-tag">SMC Expert</span>
+              <span class="strategy-tag">Risk Management</span>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
+    <!-- TRADING STRATEGIES -->
+    <section id="strategies">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-chess-knight" style="color:var(--primary)"></i>
+          <h2>Advanced Trading Strategies</h2>
+        </div>
+        <p class="section-subtitle">Professional strategies combining Smart Money Concepts with technical analysis for high-probability trading</p>
+      </div>
+      
+      <div class="grid cols-3">
+        <!-- Liquidity Grab Strategy -->
+        <article class="card strategy-card">
+          <div class="strategy-content">
+            <h3><div class="card-icon"><i class="fa-solid fa-fill-drip"></i></div> Liquidity Grab & FVG</h3>
+            <p>Identify institutional liquidity raids followed by Fair Value Gaps for high-probability reversal entries.</p>
+            <div class="strategy-image"></div>
+            <div class="strategy-meta">
+              <span class="strategy-tag">SMC</span>
+              <span class="strategy-tag">Reversal</span>
+              <span class="strategy-tag">5M-1H</span>
+            </div>
+            <div class="strategy-actions">
+              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Order Block Strategy -->
+        <article class="card strategy-card">
+          <div class="strategy-content">
+            <h3><div class="card-icon"><i class="fa-solid fa-layer-group"></i></div> Order Block Mitigation</h3>
+            <p>Trade the retracement to previous order blocks after a strong impulsive move for continuation entries.</p>
+            <div class="strategy-image"></div>
+            <div class="strategy-meta">
+              <span class="strategy-tag">SMC</span>
+              <span class="strategy-tag">Continuation</span>
+              <span class="strategy-tag">1H-4H</span>
+            </div>
+            <div class="strategy-actions">
+              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- BOS/CHoCH Strategy -->
+        <article class="card strategy-card">
+          <div class="strategy-content">
+            <h3><div class="card-icon"><i class="fa-solid fa-code-branch"></i></div> BOS/CHoCH Breakout</h3>
+            <p>Trade Break of Structure and Change of Character patterns with liquidity confluence for trend confirmation.</p>
+            <div class="strategy-image"></div>
+            <div class="strategy-meta">
+              <span class="strategy-tag">Market Structure</span>
+              <span class="strategy-tag">Breakout</span>
+              <span class="strategy-tag">4H-Daily</span>
+            </div>
+            <div class="strategy-actions">
+              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- CHARTS -->
     <section id="charts">
-      <div class="section-title">
-        <i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>
-        <h2>Live XAUUSD Chart</h2>
-      </div>
-      <p class="muted">Track gold price movements in real-time with our integrated TradingView widget.</p>
-      <div class="card">
-        <div id="tradingview_chart" style="height:520px;"></div>
-      </div>
-    </section>
-
-    <!-- CALCULATOR -->
-    <section id="calculator">
-      <div class="section-title">
-        <i class="fa-solid fa-calculator" style="color:var(--primary)"></i>
-        <h2>Forex Risk Calculator</h2>
-      </div>
-      <div class="card">
-        <p class="muted">Calculate an optimal position size based on your account balance, risk %, stop-loss (pips), and pip value per lot.</p>
-        <div class="calc">
-          <div class="row">
-            <div>
-              <label for="balance">Account Balance (USD)</label>
-              <input id="balance" type="number" placeholder="e.g. 5000">
-            </div>
-            <div>
-              <label for="risk">Risk % per Trade</label>
-              <input id="risk" type="number" placeholder="e.g. 2">
-            </div>
-          </div>
-          <div class="row">
-            <div>
-              <label for="stoploss">Stop Loss (pips)</label>
-              <input id="stoploss" type="number" placeholder="e.g. 30">
-            </div>
-            <div>
-              <label for="pipvalue">Pip Value ($ per lot)</label>
-              <input id="pipvalue" type="number" placeholder="e.g. 10">
-            </div>
-          </div>
-          <button class="btn btn-primary" onclick="calculateRisk()"><i class="fa-solid fa-equals"></i> Calculate Lot Size</button>
-          <div id="result" class="result muted"></div>
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>
+          <h2>Live Market Analysis</h2>
         </div>
-      </div>
-    </section>
+        <p class="
+              
 
-    <!-- EDUCATION -->
-    <section id="education">
-      <div class="section-title">
-        <i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i>
-        <h2>Smart Money Concepts</h2>
-      </div>
+   
 
-      <div class="grid">
-        <!-- Liquidity Pools -->
-        <article class="card">
-          <h3><i class="fa-solid fa-droplet"></i> Liquidity Pools</h3>
-          <p>Liquidity pools are price levels where a large cluster of stop orders sit—commonly around obvious swing highs and lows. Institutions target these pools to generate the volume needed for large moves.</p>
-          <div class="tip"><strong>Trading Tip:</strong> When price aggressively taps a liquidity pool and immediately rejects, it often signals a liquidity grab. Combine with a structure break (BOS/CHoCH) for higher-probability entries.</div>
-        </article>
 
-        <!-- Order Blocks -->
-        <article class="card">
-          <h3><i class="fa-solid fa-layer-group"></i> Order Blocks</h3>
-          <p>An order block is the final bullish/bearish candle before a strong impulsive move. These zones mark areas where institutions placed significant orders.</p>
-          <div class="tip"><strong>Trading Tip:</strong> After a sharp move, price frequently revisits the origin candle (order block) to mitigate institutional orders. Look for rejection wicks, engulfing patterns, or LTF BOS as confirmation.</div>
-        </article>
 
-        <!-- Market Structure -->
-        <article class="card">
-          <h3><i class="fa-solid fa-diagram-project"></i> Market Structure</h3>
-          <p>Structure is the backbone of analysis: sequences of HH/HL denote bullish conditions; LH/LL denote bearish conditions.</p>
-          <div class="tip"><strong>Trading Tip:</strong> Align with the higher-timeframe trend. If the Daily is bullish (HH+HL), seek longs; use lower-timeframe CHoCH/BOS to trigger entries.</div>
-        </article>
 
-        <!-- Supply & Demand -->
-        <article class="card">
-          <h3><i class="fa-solid fa-scale-balanced"></i> Supply & Demand Zones</h3>
-          <p>Zones form where sharp moves leave imbalances—revealing where buyers or sellers dominated.</p>
-          <div class="tip"><strong>Trading Tip:</strong> In bullish trends, buy at demand; in bearish trends, sell at supply. Wait for price confirmation (candlesticks or structure shifts).</div>
-        </article>
 
-        <!-- FVG -->
-        <article class="card">
-          <h3><i class="fa-solid fa-grip-lines-vertical"></i> Fair Value Gaps (FVG)</h3>
-          <p>FVGs are three-candle imbalances where the first and third candles don’t overlap, leaving an inefficiency that price tends to rebalance.</p>
-          <div class="tip"><strong>Trading Tip:</strong> Mark FVGs on 1H/4H. When price retraces into the gap and rejects, continuation is likely—especially when aligned with OBs and HTF bias.</div>
-        </article>
 
-        <!-- Mitigation Blocks -->
-        <article class="card">
-          <h3><i class="fa-solid fa-bullseye"></i> Mitigation Blocks</h3>
-          <p>When price revisits a prior order block to close remaining institutional orders, the level acts as a mitigation block—often giving precise entries.</p>
-          <div class="tip"><strong>Trading Tip:</strong> Look for mitigation at previously violated OBs, ideally paired with a liquidity sweep and BOS/CHoCH confluence.</div>
-        </article>
-      </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-title">
-        <i class="fa-solid fa-envelope" style="color:var(--primary)"></i>
-        <h2>Contact</h2>
-      </div>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</h3>
-          <p class="muted">Bullet Forex King</p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-phone"></i> +264 81 723 9818</h3>
-          <p class="muted">Call or WhatsApp</p>
-          <p><a class="btn btn-ghost" href="tel:+264817239818"><i class="fa-solid fa-phone-volume"></i> Call Now</a></p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-at"></i> info@bulletforexking.com</h3>
-          <p class="muted">For training, mentorship, and signals</p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-user-tie"></i> Founder</h3>
-          <p><strong>Lifasi Malumo Lucky</strong><br/>Core Founder &amp; CEO</p>
-        </div>
-      </div>
-    </section>
 
-  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="social">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-x-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
-      </div>
-      <p class="disclaimer">
-        <strong>Disclaimer:</strong> Trading forex carries a high level of risk and may not be suitable for all investors.
-        Past performance is not indicative of future results. The information on this website is for educational purposes only.
-      </p>
-      <p class="copy">© 2023–2025 Bullet Forex King. All rights reserved.</p>
-    </div>
-  </footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://s3.tradingview.com/tv.js"></script>
-  <script>
-    // TradingView
-    new TradingView.widget({
-      width: "100%",
-      height: 520,
-      symbol: "OANDA:XAUUSD",
-      interval: "15",
-      timezone: "Etc/UTC",
-      theme: "dark",
-      style: "1",
-      locale: "en",
-      toolbar_bg: "#000000",
-      enable_publishing: false,
-      hide_top_toolbar: false,
-      container_id: "tradingview_chart"
-    });
+     
 
-    // Smooth scroll + active link
-    document.querySelectorAll('.links a').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        if(!id.startsWith('#')) return;
-        e.preventDefault();
-        const el = document.querySelector(id);
-        if(el){
-          window.scrollTo({top: el.offsetTop - 80, behavior:'smooth'});
-          document.querySelectorAll('.links a').forEach(x=>x.classList.remove('active'));
-          a.classList.add('active');
-        }
-      });
-    });
-
-    // Risk Calculator
-    function calculateRisk(){
-      const b = parseFloat(document.getElementById('balance').value);
-      const r = parseFloat(document.getElementById('risk').value);
-      const s = parseFloat(document.getElementById('stoploss').value);
-      const p = parseFloat(document.getElementById('pipvalue').value);
-      const out = document.getElementById('result');
-
-      if([b,r,s,p].some(x=>isNaN(x)||x<=0)){
-        out.className='result err';
-        out.textContent='Please enter valid positive numbers in all fields.';
-        return;
-      }
-      const riskAmount = b * (r/100);
-      const lotSize = riskAmount / (s * p);
-      out.className='result ok';
-      out.textContent = `Recommended Lot Size: ${lotSize.toFixed(2)} lots  •  (Risk: $${riskAmount.toFixed(2)})`;
-    }
-    window.calculateRisk = calculateRisk;
-  </script>
-</body>
-</html>
