@@ -1,169 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bullet Forex King - Namibia</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bullet Forex King — Windhoek, Namibia</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* (Keep your CSS as before – unchanged) */
+    :root{
+      --primary:#ffd700;  /* gold */
+      --secondary:#005bbc;/* deep blue */
+      --dark:#0b0b0f;     /* near-black */
+      --dark-2:#121219;   /* card bg */
+      --muted:#aab0c0;    /* muted text */
+      --edge:#222630;     /* borders */
+      --success:#18c37e;
+      --danger:#ff4b4b;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 20% -10%,rgba(0,91,188,.20),transparent 60%),
+                                     radial-gradient(1000px 500px at 110% 10%,rgba(255,215,0,.12),transparent 60%),
+                                     var(--dark);
+              color:#eef1f7; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header / Nav */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:linear-gradient(to right, rgba(11,11,15,.8), rgba(0,91,188,.25), rgba(11,11,15,.8));
+      border-bottom:1px solid rgba(255,215,0,.15);
+    }
+    .nav-inner{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .badge{
+      width:46px;height:46px;border-radius:50%;
+      display:grid;place-items:center;font-weight:800;letter-spacing:.5px;
+      color:#0b0b0f;background:linear-gradient(135deg,var(--primary),#ffd000);
+      box-shadow:0 0 22px rgba(255,215,0,.35), inset 0 0 0 2px rgba(0,0,0,.3);
+    }
+    .brand .title{font-size:1.25rem;font-weight:800;color:var(--primary)}
+    .brand .meta{font-size:.85rem;color:var(--muted)}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    .links a{padding:8px 14px;border-radius:999px;border:1px solid transparent;color:#e9edf5}
+    .links a:hover,.links a.active{border-color:rgba(255,215,0,.35);background:rgba(255,215,0,.12);color:var(--primary)}
+
+    /* Layout helpers */
+    .container{max-width:1200px;margin:auto;padding:28px 20px}
+    .grid{display:grid;gap:20px}
+    @media(min-width:900px){.grid.cols-2{grid-template-columns:1.2fr .8fr}}
+
+    /* Hero */
+    .hero{
+      margin-top:22px;border-radius:var(--radius);
+      background:
+        linear-gradient( to right, rgba(0,91,188,.18), rgba(0,0,0,.0) 40% ),
+        linear-gradient( 180deg, rgba(255,215,0,.10), rgba(255,215,0,0) 55%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%23005bbc" stop-opacity=".28" /><stop offset="1" stop-color="%23005bbc" stop-opacity="0"/></linearGradient></defs><rect width="1200" height="500" fill="url(%23g)"/></svg>');
+      border:1px solid rgba(255,215,0,.15);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{padding:54px 34px}
+    .eyebrow{color:var(--muted);font-weight:600;letter-spacing:.15em;text-transform:uppercase}
+    .hero h1{margin:.35em 0 .25em;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;color:var(--primary);text-shadow:0 0 18px rgba(255,215,0,.18)}
+    .lead{max-width:800px;color:#dfe5f3;font-size:1.1rem}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--primary);color:#141414;border-color:#cdb000}
+    .btn-primary:hover{filter:brightness(1.03)}
+    .btn-ghost{background:rgba(255,215,0,.12);color:var(--primary);border-color:rgba(255,215,0,.25)}
+    .btn-ghost:hover{background:rgba(255,215,0,.18)}
+
+    /* Section */
+    section{margin:36px 0}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .section-title h2{margin:0;font-size:1.6rem;color:var(--primary)}
+    .muted{color:var(--muted)}
+
+    /* Cards */
+    .card{
+      background:linear-gradient(180deg, rgba(255,215,0,.05), rgba(0,0,0,0));
+      border:1px solid var(--edge);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:0 0 10px;color:#fff}
+    .tip{margin-top:12px;padding:12px;border-left:3px solid var(--primary);background:rgba(255,215,0,.08);border-radius:8px}
+
+    /* Calculator */
+    .calc{display:grid;gap:14px}
+    .row{display:grid;gap:12px}
+    @media(min-width:720px){.row{grid-template-columns:repeat(2,1fr)}}
+    label{font-weight:600;color:var(--primary)}
+    input{
+      width:100%;padding:12px;border-radius:10px;border:1px solid var(--edge);background:var(--dark-2);color:#eef1f7;
+      outline:none;box-shadow:inset 0 0 0 1px rgba(255,215,0,.0)
+    }
+    input:focus{box-shadow:inset 0 0 0 1px rgba(255,215,0,.38)}
+    .result{margin-top:10px;font-weight:800}
+    .ok{color:var(--success)} .err{color:var(--danger)}
+
+    /* Founder */
+    .founder{
+      display:grid;gap:18px;align-items:center
+    }
+    @media(min-width:780px){.founder{grid-template-columns:auto 1fr}}
+    .avatar{
+      width:86px;height:86px;border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),#ffec70);
+      display:grid;place-items:center;color:#111;font-weight:900;box-shadow:0 0 22px rgba(255,215,0,.35)
+    }
+
+    /* Footer */
+    footer{
+      margin-top:48px;border-top:1px solid rgba(255,215,0,.15);
+      background:linear-gradient(to right, rgba(0,91,188,.16), rgba(11,11,15,.85));
+    }
+    .footer-inner{max-width:1200px;margin:auto;padding:28px 20px;text-align:center}
+    .social{display:flex;justify-content:center;gap:16px;margin:10px 0 14px}
+    .social a{font-size:1.2rem;color:#e8ecf7}
+    .social a:hover{color:var(--primary)}
+    .copy{color:var(--muted);font-size:.9rem}
+    .disclaimer{margin-top:12px;color:#a9afc0;font-size:.9rem;max-width:900px;margin-inline:auto}
   </style>
 </head>
 <body>
-  <!-- Header & Navigation -->
-  <header>
-    <div class="logo-container">
-      <div class="logo">BFK</div>
-      <div>
-        <div class="logo-text">Bullet Forex King</div>
-        <div class="location"><i class="fas fa-map-marker-alt"></i> Windhoek, Namibia</div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="badge">BFK</div>
+        <div>
+          <div class="title">Bullet Forex King</div>
+          <div class="meta"><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</div>
+        </div>
+      </div>
+      <div class="links">
+        <a class="active" href="#home">Home</a>
+        <a href="#charts">Charts</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#education">Education</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-    
-    <nav>
-      <a href="#welcome" class="active">Home</a>
-      <a href="#charts">Charts</a>
-      <a href="#calculator">Calculator</a>
-      <a href="#education">Education</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="container hero">
+    <div class="hero-inner">
+      <div class="eyebrow">BFK • Bullet Forex King</div>
+      <h1>Master Forex Trading with Precision</h1>
+      <p class="lead">Smart Money Concepts • Liquidity • Institutional Order Flow</p>
+      <div class="cta">
+        <a href="#calculator" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Risk Calculator</a>
+        <a href="#education" class="btn btn-ghost"><i class="fa-solid fa-graduation-cap"></i> Learn SMC</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="welcome" class="hero">
-    <h1>Master Forex Trading with Precision</h1>
-    <p>Smart Money Concepts • Liquidity • Institutional Order Flow</p>
-    <div>
-      <a href="#calculator" class="btn">Risk Calculator</a>
-      <a href="#education" class="btn btn-outline">Learn SMC</a>
-    </div>
-  </section>
+  <main class="container">
 
-  <!-- About Us Section (New) -->
-  <section id="about-us">
-    <h2><i class="fas fa-users"></i> About Us</h2>
-    <p>Bullet Forex King was established to guide traders in Namibia and globally through the complexities of the forex market. We combine advanced Smart Money Concepts (SMC) with practical tools to help traders master consistency and discipline.</p>
-    <div class="content-card">
-      <h3>Our Vision</h3>
-      <p>To build a strong community of traders who understand institutional trading concepts, manage risk professionally, and grow sustainably in the forex market.</p>
-    </div>
-    <div class="content-card">
-      <h3>Our Mission</h3>
-      <p>We are committed to providing education, tools, and mentorship that bridge the gap between retail and institutional trading knowledge. Our focus is on empowering traders to achieve financial freedom through discipline and skill.</p>
-    </div>
-    <div class="content-card">
-      <h3>Founder</h3>
-      <p><strong>Lifasi Malumo Lucky – Core Founder & CEO</strong></p>
-      <p>Driven by a passion for trading and education, Lifasi created Bullet Forex King to transform traders from all walks of life into confident, strategic, and profitable market participants.</p>
-    </div>
-  </section>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">
+        <i class="fa-solid fa-circle-info" style="color:var(--primary)"></i>
+        <h2>About Us</h2>
+      </div>
+      <div class="grid cols-2">
+        <article class="card">
+          <p><strong>Bullet Forex King</strong> was established to guide traders in Namibia and globally through the complexities of the forex market. We combine advanced <em>Smart Money Concepts (SMC)</em> with practical tools to help traders master consistency and discipline.</p>
+          <div class="tip"><strong>Our Vision:</strong> Build a strong community of traders who understand institutional concepts, manage risk professionally, and grow sustainably in the forex market.</div>
+          <div class="tip"><strong>Our Mission:</strong> Provide education, tools, and mentorship that bridge the gap between retail and institutional trading knowledge—empowering disciplined, skillful, and independent traders.</div>
+        </article>
 
-  <!-- Charts Section -->
-  <!-- (unchanged, keep your TradingView widget) -->
+        <aside class="card founder">
+          <div class="avatar">LM</div>
+          <div>
+            <h3>Lifasi Malumo Lucky — Core Founder & CEO</h3>
+            <p class="muted">Driven by a passion for trading and education, Lifasi founded Bullet Forex King to transform traders from all walks of life into confident, strategic, and consistently profitable market participants.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  <!-- Risk Calculator Section -->
-  <!-- (unchanged) -->
+    <!-- CHARTS -->
+    <section id="charts">
+      <div class="section-title">
+        <i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>
+        <h2>Live XAUUSD Chart</h2>
+      </div>
+      <p class="muted">Track gold price movements in real-time with our integrated TradingView widget.</p>
+      <div class="card">
+        <div id="tradingview_chart" style="height:520px;"></div>
+      </div>
+    </section>
 
-  <!-- Education Section -->
-  <section id="education">
-    <h2><i class="fas fa-graduation-cap"></i> Smart Money Concepts</h2>
-    <p>Learn how institutional traders approach the market with detailed explanations, visual illustrations, and strategies for practical application.</p>
-    
-    <div class="content-grid">
-      <div class="content-card">
-        <h3><i class="fas fa-money-bill-wave"></i> Liquidity Pools</h3>
-        <p>Liquidity pools are price levels where a large cluster of pending stop-loss orders are positioned, usually around obvious highs and lows. Institutions target these pools to generate the volume they need for big moves.</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> When price aggressively moves into a liquidity pool and immediately rejects, this is a signal that smart money has engineered a liquidity grab. Combine this with structure breaks for higher accuracy entries.</p>
+    <!-- CALCULATOR -->
+    <section id="calculator">
+      <div class="section-title">
+        <i class="fa-solid fa-calculator" style="color:var(--primary)"></i>
+        <h2>Forex Risk Calculator</h2>
+      </div>
+      <div class="card">
+        <p class="muted">Calculate an optimal position size based on your account balance, risk %, stop-loss (pips), and pip value per lot.</p>
+        <div class="calc">
+          <div class="row">
+            <div>
+              <label for="balance">Account Balance (USD)</label>
+              <input id="balance" type="number" placeholder="e.g. 5000">
+            </div>
+            <div>
+              <label for="risk">Risk % per Trade</label>
+              <input id="risk" type="number" placeholder="e.g. 2">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="stoploss">Stop Loss (pips)</label>
+              <input id="stoploss" type="number" placeholder="e.g. 30">
+            </div>
+            <div>
+              <label for="pipvalue">Pip Value ($ per lot)</label>
+              <input id="pipvalue" type="number" placeholder="e.g. 10">
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="calculateRisk()"><i class="fa-solid fa-equals"></i> Calculate Lot Size</button>
+          <div id="result" class="result muted"></div>
         </div>
       </div>
+    </section>
 
-      <div class="content-card">
-        <h3><i class="fas fa-exchange-alt"></i> Order Blocks</h3>
-        <p>An order block is the last bullish or bearish candle before a strong impulsive move. These zones represent areas where institutions placed large orders.</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> After a sharp move, price often revisits the origin candle (order block) to mitigate pending institutional orders. Watch for confirmations like rejection wicks, engulfing candles, or lower timeframe break of structure.</p>
-        </div>
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-title">
+        <i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i>
+        <h2>Smart Money Concepts</h2>
       </div>
 
-      <div class="content-card">
-        <h3><i class="fas fa-chart-area"></i> Market Structure</h3>
-        <p>Market structure is the backbone of technical analysis. It helps traders understand trend direction by analyzing highs and lows (HH, HL, LH, LL).</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> Always align with the higher timeframe structure. For example, trade only longs when the daily timeframe is showing bullish structure (HH + HL), and look for CHoCH/BOS on lower timeframes for entry.</p>
+      <div class="grid">
+        <!-- Liquidity Pools -->
+        <article class="card">
+          <h3><i class="fa-solid fa-droplet"></i> Liquidity Pools</h3>
+          <p>Liquidity pools are price levels where a large cluster of stop orders sit—commonly around obvious swing highs and lows. Institutions target these pools to generate the volume needed for large moves.</p>
+          <div class="tip"><strong>Trading Tip:</strong> When price aggressively taps a liquidity pool and immediately rejects, it often signals a liquidity grab. Combine with a structure break (BOS/CHoCH) for higher-probability entries.</div>
+        </article>
+
+        <!-- Order Blocks -->
+        <article class="card">
+          <h3><i class="fa-solid fa-layer-group"></i> Order Blocks</h3>
+          <p>An order block is the final bullish/bearish candle before a strong impulsive move. These zones mark areas where institutions placed significant orders.</p>
+          <div class="tip"><strong>Trading Tip:</strong> After a sharp move, price frequently revisits the origin candle (order block) to mitigate institutional orders. Look for rejection wicks, engulfing patterns, or LTF BOS as confirmation.</div>
+        </article>
+
+        <!-- Market Structure -->
+        <article class="card">
+          <h3><i class="fa-solid fa-diagram-project"></i> Market Structure</h3>
+          <p>Structure is the backbone of analysis: sequences of HH/HL denote bullish conditions; LH/LL denote bearish conditions.</p>
+          <div class="tip"><strong>Trading Tip:</strong> Align with the higher-timeframe trend. If the Daily is bullish (HH+HL), seek longs; use lower-timeframe CHoCH/BOS to trigger entries.</div>
+        </article>
+
+        <!-- Supply & Demand -->
+        <article class="card">
+          <h3><i class="fa-solid fa-scale-balanced"></i> Supply & Demand Zones</h3>
+          <p>Zones form where sharp moves leave imbalances—revealing where buyers or sellers dominated.</p>
+          <div class="tip"><strong>Trading Tip:</strong> In bullish trends, buy at demand; in bearish trends, sell at supply. Wait for price confirmation (candlesticks or structure shifts).</div>
+        </article>
+
+        <!-- FVG -->
+        <article class="card">
+          <h3><i class="fa-solid fa-grip-lines-vertical"></i> Fair Value Gaps (FVG)</h3>
+          <p>FVGs are three-candle imbalances where the first and third candles don’t overlap, leaving an inefficiency that price tends to rebalance.</p>
+          <div class="tip"><strong>Trading Tip:</strong> Mark FVGs on 1H/4H. When price retraces into the gap and rejects, continuation is likely—especially when aligned with OBs and HTF bias.</div>
+        </article>
+
+        <!-- Mitigation Blocks -->
+        <article class="card">
+          <h3><i class="fa-solid fa-bullseye"></i> Mitigation Blocks</h3>
+          <p>When price revisits a prior order block to close remaining institutional orders, the level acts as a mitigation block—often giving precise entries.</p>
+          <div class="tip"><strong>Trading Tip:</strong> Look for mitigation at previously violated OBs, ideally paired with a liquidity sweep and BOS/CHoCH confluence.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <i class="fa-solid fa-envelope" style="color:var(--primary)"></i>
+        <h2>Contact</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</h3>
+          <p class="muted">Bullet Forex King</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-phone"></i> +264 81 723 9818</h3>
+          <p class="muted">Call or WhatsApp</p>
+          <p><a class="btn btn-ghost" href="tel:+264817239818"><i class="fa-solid fa-phone-volume"></i> Call Now</a></p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-at"></i> info@bulletforexking.com</h3>
+          <p class="muted">For training, mentorship, and signals</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-user-tie"></i> Founder</h3>
+          <p><strong>Lifasi Malumo Lucky</strong><br/>Core Founder &amp; CEO</p>
         </div>
       </div>
+    </section>
 
-      <div class="content-card">
-        <h3><i class="fas fa-balance-scale"></i> Supply & Demand Zones</h3>
-        <p>These zones form when the market leaves behind sharp moves, indicating imbalances. They show where buyers or sellers were strongly in control.</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> Entering at demand zones during bullish trends and at supply zones during bearish trends greatly improves risk-to-reward. Wait for price confirmation (candlestick patterns or structure shifts).</p>
-        </div>
-      </div>
+  </main>
 
-      <div class="content-card">
-        <h3><i class="fas fa-layer-group"></i> Fair Value Gaps (FVG)</h3>
-        <p>A Fair Value Gap is a price imbalance caused by three candles: the first and third do not overlap, leaving a gap. Institutions tend to rebalance these inefficiencies.</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> Mark FVGs on the 1H or 4H chart. When price retraces into these zones and rejects, it often continues in the original direction. FVGs also align well with order blocks.</p>
-        </div>
-      </div>
-
-      <div class="content-card">
-        <h3><i class="fas fa-bullseye"></i> Mitigation Blocks</h3>
-        <p>A mitigation block occurs when price revisits a previous order block to close out remaining institutional orders. These levels often provide precise entries.</p>
-        <div class="explanation">
-          <p><strong>Trading Tip:</strong> Look for mitigation blocks when price returns to a previously violated order block. These setups are best traded with confluence such as BOS/CHoCH and liquidity sweeps.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2><i class="fas fa-user-tie"></i> About the Founder</h2>
-    <p>Bullet Forex King was founded with the vision to empower traders in Namibia and across the globe with the knowledge of Smart Money Concepts and professional risk management tools.</p>
-    <div class="content-card">
-      <h3>Lifasi Malumo Lucky</h3>
-      <p><strong>Core Founder & CEO of Bullet Forex King</strong></p>
-      <p>With years of trading experience, Lifasi Malumo Lucky established Bullet Forex King to bridge the gap between retail traders and institutional trading knowledge. His mission is to build a community of disciplined and consistently profitable traders.</p>
-    </div>
-  </section>
-
-  <!-- Quotes Section -->
-  <!-- (unchanged) -->
-
-  <!-- Contact Section -->
-  <!-- (unchanged, but your name will also appear in footer) -->
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-content">
-      <div class="logo-text">Bullet Forex King</div>
-      <div class="location">Windhoek, Namibia</div>
-      <p><strong>Founded by Lifasi Malumo Lucky – Core Founder & CEO</strong></p>
-      
-      <div class="social-links">
+    <div class="footer-inner">
+      <div class="social">
         <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
         <a href="#"><i class="fab fa-telegram"></i></a>
       </div>
-      
       <p class="disclaimer">
-        Disclaimer: Trading forex carries a high level of risk and may not be suitable for all investors. 
+        <strong>Disclaimer:</strong> Trading forex carries a high level of risk and may not be suitable for all investors.
         Past performance is not indicative of future results. The information on this website is for educational purposes only.
       </p>
-      
-      <p>© 2023 Bullet Forex King. All rights reserved.</p>
+      <p class="copy">© 2023–2025 Bullet Forex King. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
+  <script src="https://s3.tradingview.com/tv.js"></script>
   <script>
-    /* (Keep your JavaScript as before – unchanged) */
+    // TradingView
+    new TradingView.widget({
+      width: "100%",
+      height: 520,
+      symbol: "OANDA:XAUUSD",
+      interval: "15",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#000000",
+      enable_publishing: false,
+      hide_top_toolbar: false,
+      container_id: "tradingview_chart"
+    });
+
+    // Smooth scroll + active link
+    document.querySelectorAll('.links a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(!id.startsWith('#')) return;
+        e.preventDefault();
+        const el = document.querySelector(id);
+        if(el){
+          window.scrollTo({top: el.offsetTop - 80, behavior:'smooth'});
+          document.querySelectorAll('.links a').forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // Risk Calculator
+    function calculateRisk(){
+      const b = parseFloat(document.getElementById('balance').value);
+      const r = parseFloat(document.getElementById('risk').value);
+      const s = parseFloat(document.getElementById('stoploss').value);
+      const p = parseFloat(document.getElementById('pipvalue').value);
+      const out = document.getElementById('result');
+
+      if([b,r,s,p].some(x=>isNaN(x)||x<=0)){
+        out.className='result err';
+        out.textContent='Please enter valid positive numbers in all fields.';
+        return;
+      }
+      const riskAmount = b * (r/100);
+      const lotSize = riskAmount / (s * p);
+      out.className='result ok';
+      out.textContent = `Recommended Lot Size: ${lotSize.toFixed(2)} lots  •  (Risk: $${riskAmount.toFixed(2)})`;
+    }
+    window.calculateRisk = calculateRisk;
   </script>
 </body>
 </html>
