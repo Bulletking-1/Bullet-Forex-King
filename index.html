@@ -1,879 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bullet Forex King — Advanced Forex Trading Education</title>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bullet Forex King — Advanced Forex Trading</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
   <style>
     :root{
-      --primary:#ffd700;  /* gold */
-      --primary-dark:#d4af37;
-      --secondary:#005bbc;/* deep blue */
-      --secondary-light:#1a73e8;
-      --dark:#0b0b0f;     /* near-black */
-      --dark-2:#121219;   /* card bg */
-      --dark-3:#1a1a24;
-      --muted:#aab0c0;    /* muted text */
-      --light-muted:#d0d4dc;
-      --edge:#222630;     /* borders */
-      --success:#18c37e;
-      --success-light:#4cdb9d;
-      --danger:#ff4b4b;
-      --danger-light:#ff6b6b;
+      --primary:#ffd700;
+      --secondary:#005bbc;
+      --bg:#070812;
+      --card:#0f1726;
+      --muted:#aab0c0;
       --radius:16px;
-      --radius-lg:24px;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-      --transition: all 0.3s ease;
+      --glass: rgba(255,255,255,0.03);
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --trans: all .28s ease;
     }
-
     *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      background:radial-gradient(1200px 600px at 20% -10%,rgba(0,91,188,.20),transparent 60%),
-                radial-gradient(1000px 500px at 110% 10%,rgba(255,215,0,.12),transparent 60%),
-                var(--dark);
-      color:#eef1f7; 
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      scroll-behavior: smooth;
+    html,body{height:100%; margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:
+      radial-gradient(800px 300px at 10% -10%, rgba(0,91,188,.07), transparent),
+      radial-gradient(600px 200px at 110% 10%, rgba(255,215,0,.04), transparent),
+      var(--bg);
+      color:#e8eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    /* Layout */
+    .container{max-width:1150px; margin:0 auto; padding:28px 20px;}
 
-    h1, h2, h3, h4 {
-      font-weight: 700;
-      line-height: 1.2;
-      margin-top: 0;
-    }
-
-    /* Header / Nav */
+    /* NAV */
     .nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      backdrop-filter: blur(10px);
-      background:linear-gradient(to right, rgba(11,11,15,.95), rgba(0,91,188,.25), rgba(11,11,15,.95));
-      border-bottom:1px solid rgba(255,215,0,.15);
-      transition: var(--transition);
+      position:sticky; top:0; z-index:9999;
+      background: linear-gradient(90deg, rgba(7,8,18,.86), rgba(0,0,0,.24));
+      border-bottom:1px solid rgba(255,215,0,.08);
+      backdrop-filter: blur(8px);
+      transition: var(--trans);
     }
-    
-    .nav.scrolled {
-      background:rgba(11,11,15,.98);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    }
-    
-    .nav-inner{
-      max-width:1200px;
-      margin:auto;
-      padding:12px 20px;
-      display:flex;
-      align-items:center;
-      gap:18px;
-      justify-content:space-between;
-    }
-    
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    
-    .badge{
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      letter-spacing:.5px;
-      color:#0b0b0f;
-      background:linear-gradient(135deg,var(--primary),#ffd000);
-      box-shadow:0 0 22px rgba(255,215,0,.35), inset 0 0 0 2px rgba(0,0,0,.3);
-      transition: var(--transition);
-    }
-    
-    .brand:hover .badge {
-      transform: rotate(15deg);
-      box-shadow:0 0 26px rgba(255,215,0,.5), inset 0 0 0 2px rgba(0,0,0,.3);
-    }
-    
-    .brand .title{
-      font-size:1.25rem;
-      font-weight:800;
-      color:var(--primary);
-      background: linear-gradient(to right, var(--primary), var(--primary-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .brand .meta{
-      font-size:.85rem;
-      color:var(--muted);
-    }
-    
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    .links{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-    
-    .links a{
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid transparent;
-      color:#e9edf5;
-      transition: var(--transition);
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .links a:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
-      transition: var(--transition);
-    }
-    
-    .links a:hover:before,
-    .links a.active:before {
-      left: 100%;
-    }
-    
-    .links a:hover,
-    .links a.active{
-      border-color:rgba(255,215,0,.35);
-      background:rgba(255,215,0,.12);
-      color:var(--primary);
-    }
+    .nav-inner{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px;}
+    .brand{display:flex; gap:12px; align-items:center;}
+    .badge{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#0b0b0f;background:linear-gradient(135deg,var(--primary),#ffda47); box-shadow:0 0 18px rgba(255,215,0,.22)}
+    .brand .title{font-weight:800;color:var(--primary); letter-spacing:.2px}
+    .nav-links{display:flex; gap:8px; align-items:center;}
+    .nav-links a{padding:8px 14px;border-radius:999px;color:#eaf0ff; font-weight:600; opacity:.95; transition:var(--trans); border:1px solid transparent;}
+    .nav-links a:hover, .nav-links a.active{ color:var(--primary); background:rgba(255,215,0,.06); border-color:rgba(255,215,0,.10) }
+    .nav-toggle{display:none; background:none; border:0; color:var(--primary); font-size:20px}
 
-    /* Layout helpers */
-    .container{
-      max-width:1200px;
-      margin:auto;
-      padding:28px 20px;
-    }
-    
-    .grid{
-      display:grid;
-      gap:24px;
-    }
-    
-    .cols-2 {
-      grid-template-columns: 1fr;
-    }
-    
-    .cols-3 {
-      grid-template-columns: 1fr;
-    }
-    
-    .cols-4 {
-      grid-template-columns: 1fr;
-    }
-    
-    @media(min-width:768px){
-      .cols-2{
-        grid-template-columns:repeat(2, 1fr);
-      }
-      .cols-3{
-        grid-template-columns:repeat(2, 1fr);
-      }
-      .cols-4{
-        grid-template-columns:repeat(2, 1fr);
-      }
-    }
-    
-    @media(min-width:992px){
-      .cols-3{
-        grid-template-columns:repeat(3, 1fr);
-      }
-      .cols-4{
-        grid-template-columns:repeat(4, 1fr);
-      }
-    }
-
-    /* Hero */
+    /* HERO */
     .hero{
-      margin-top:22px;
-      border-radius:var(--radius-lg);
+      border-radius:20px; overflow:hidden; position:relative; margin-top:18px;
       background:
-        linear-gradient( to right, rgba(0,91,188,.18), rgba(0,0,0,.0) 40% ),
-        linear-gradient( 180deg, rgba(255,215,0,.10), rgba(255,215,0,0) 55%),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%23005bbc" stop-opacity=".28" /><stop offset="1" stop-color="%23005bbc" stop-opacity="0"/></linearGradient></defs><rect width="1200" height="500" fill="url(%23g)"/></svg>');
-      border:1px solid rgba(255,215,0,.15);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position: relative;
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.25)),
+        url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=6da8b7a5f0e5b23e0d8c4b7dcd8b3b4d');
+      background-size:cover; background-position:center;
+      border:1px solid rgba(255,215,0,.06); box-shadow:var(--shadow);
     }
-    
-    .hero-inner{
-      padding:64px 34px;
-      position: relative;
-      z-index: 2;
+    .hero-inner{display:grid; gap:14px; padding:64px 36px; align-items:center}
+    .eyebrow{display:inline-block;padding:6px 12px;background:rgba(255,215,0,.08); color:var(--primary); font-weight:700; border-radius:999px; letter-spacing:.14em; font-size:.85rem}
+    .hero h1{margin:0; font-size:clamp(28px,6vw,54px); line-height:1.03; font-weight:900;
+      background:linear-gradient(90deg,var(--primary),#ffd84d); -webkit-background-clip:text; color:transparent; text-shadow:0 6px 30px rgba(255,200,30,.07);
+      animation: floatGlow 3.8s ease-in-out infinite;
     }
-    
-    .hero-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      z-index: 1;
-    }
-    
-    .eyebrow{
-      color:var(--muted);
-      font-weight:600;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      font-size: 0.9rem;
-      display: inline-block;
-      padding: 6px 12px;
-      background: rgba(255,215,0,0.1);
-      border-radius: 999px;
-      margin-bottom: 16px;
-    }
-    
-    .hero h1{
-      margin:.35em 0 .25em;
-      font-size:clamp(2.2rem,5vw,3.5rem);
-      line-height:1.1;
-      background: linear-gradient(to right, var(--primary), var(--primary-dark), #ffcc00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow:0 0 18px rgba(255,215,0,.18);
-      font-weight: 800;
-    }
-    
-    .lead{
-      max-width:800px;
-      color:#dfe5f3;
-      font-size:1.15rem;
-      margin-bottom: 28px;
-    }
-    
-    .cta{
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:14px 24px;
-      border-radius:12px;
-      font-weight:700;
-      border:1px solid transparent;
-      cursor:pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: var(--transition);
-    }
-    
-    .btn:hover:after {
-      left: 100%;
-    }
-    
-    .btn-primary{
-      background:var(--primary);
-      color:#141414;
-      border-color:#cdb000;
-      box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-    }
-    
-    .btn-primary:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255,215,0,0.4);
-    }
-    
-    .btn-ghost{
-      background:rgba(255,215,0,.12);
-      color:var(--primary);
-      border-color:rgba(255,215,0,.25);
-    }
-    
-    .btn-ghost:hover{
-      background:rgba(255,215,0,.18);
-      transform: translateY(-2px);
-    }
-    
-    .btn-secondary {
-      background: var(--secondary);
-      color: white;
-      border-color: var(--secondary-light);
-    }
-    
-    .btn-secondary:hover {
-      background: var(--secondary-light);
-      transform: translateY(-2px);
-    }
+    @keyframes floatGlow{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
 
-    /* Section */
-    section{
-      margin:48px 0;
-    }
-    
-    .section-header {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-    
-    .section-title{
-      display:flex;
-      align-items:center;
-      justify-content: center;
-      gap:12px;
-      margin-bottom:16px;
-    }
-    
-    .section-title h2{
-      margin:0;
-      font-size:2rem;
-      background: linear-gradient(to right, var(--primary), var(--primary-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .section-subtitle {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .muted{
-      color:var(--muted);
-    }
+    .lead{color:var(--light-muted,#dfe5f3); max-width:900px; font-size:1.05rem}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    .btn{display:inline-flex; gap:10px; align-items:center; padding:12px 18px; border-radius:12px; font-weight:800; cursor:pointer; border:1px solid transparent; transition:var(--trans)}
+    .btn-primary{background:var(--primary); color:#081018; border-color:#d4b300; box-shadow:0 8px 30px rgba(255,200,30,.12)}
+    .btn-ghost{background:transparent; color:var(--primary); border-color:rgba(255,215,0,.12); backdrop-filter: blur(6px)}
+    .btn-secondary{background:var(--secondary); color:white; border-color:rgba(26,115,232,.12)}
 
-    /* Cards */
-    .card{
-      background:linear-gradient(180deg, var(--dark-2), var(--dark-3));
-      border:1px solid var(--edge);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:var(--shadow);
-      transition: var(--transition);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      border-color: rgba(255,215,0,0.2);
-    }
-    
-    .card h3{
-      margin:0 0 12px;
-      color:#fff;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .card-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--dark);
-      font-size: 1.2rem;
-    }
-    
-    .tip{
-      margin-top:16px;
-      padding:16px;
-      border-left:3px solid var(--primary);
-      background:rgba(255,215,0,.08);
-      border-radius:8px;
-      font-size: 0.95rem;
-    }
-    
-    .tip strong {
-      color: var(--primary);
-    }
+    /* GRID helpers */
+    .grid{display:grid; gap:20px}
+    .cols-2{grid-template-columns:1fr;}
+    @media(min-width:720px){ .cols-2{grid-template-columns: 1fr 360px;} }
 
-    /* Calculator */
-    .calc{
-      display:grid;
-      gap:16px;
-    }
-    
-    .row{
-      display:grid;
-      gap:16px;
-    }
-    
-    @media(min-width:720px){
-      .row{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-    
-    label{
-      font-weight:600;
-      color:var(--primary);
-      margin-bottom: 8px;
-      display: block;
-    }
-    
-    input, select{
-      width:100%;
-      padding:14px;
-      border-radius:10px;
-      border:1px solid var(--edge);
-      background:var(--dark-2);
-      color:#eef1f7;
-      outline:none;
-      box-shadow:inset 0 0 0 1px rgba(255,215,0,.0);
-      transition: var(--transition);
-      font-family: inherit;
-    }
-    
-    input:focus,
-    select:focus{
-      box-shadow:inset 0 0 0 1px rgba(255,215,0,.38);
-      border-color: var(--primary);
-    }
-    
-    .result{
-      margin-top:16px;
-      padding: 16px;
-      border-radius: var(--radius);
-      background: var(--dark-2);
-      border: 1px solid var(--edge);
-      font-weight:800;
-      text-align: center;
-    }
-    
-    .ok{
-      color:var(--success);
-      background: rgba(24, 195, 126, 0.1);
-      border-color: rgba(24, 195, 126, 0.2);
-    }
-    
-    .err{
-      color:var(--danger);
-      background: rgba(255, 75, 75, 0.1);
-      border-color: rgba(255, 75, 75, 0.2);
-    }
-    
-    .calculator-advanced {
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--edge);
-    }
-    
-    .calculator-toggle {
-      background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
-      padding: 0;
-    }
+    /* CARDS */
+    .card{background:linear-gradient(180deg,var(--card), #0b1220); border-radius:14px; padding:18px; border:1px solid rgba(255,255,255,0.02); box-shadow:var(--shadow); transition:var(--trans)}
+    .card h3{margin:0 0 10px; font-size:1.1rem}
+    .card p{margin:0; color:var(--muted)}
 
-    /* Founder */
-    .founder{
-      display:grid;
-      gap:24px;
-      align-items:center;
-    }
-    
-    @media(min-width:780px){
-      .founder{
-        grid-template-columns:auto 1fr;
-      }
-    }
-    
-    .avatar{
-      width:100px;
-      height:100px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--primary),#ffec70);
-      display:grid;
-      place-items:center;
-      color:#111;
-      font-weight:900;
-      font-size: 2rem;
-      box-shadow:0 0 22px rgba(255,215,0,.35);
-      border: 3px solid var(--dark);
-    }
+    /* STATS */
+    .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:8px}
+    @media(max-width:900px){ .stats-grid{grid-template-columns:repeat(2,1fr)} }
+    .stat{padding:18px; border-radius:12px; text-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,215,0,.03)}
+    .stat .num{font-size:1.8rem; font-weight:900; color:var(--primary); letter-spacing:.6px}
 
-    /* Testimonials */
-    .testimonials {
-      position: relative;
-    }
-    
-    .testimonial-card {
-      background: var(--dark-2);
-      border-radius: var(--radius);
-      padding: 24px;
-      border: 1px solid var(--edge);
-      position: relative;
-    }
-    
-    .testimonial-card:before {
-      content: '"';
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 4rem;
-      color: rgba(255,215,0,0.1);
-      font-family: Georgia, serif;
-    }
-    
-    .testimonial-content {
-      margin-bottom: 20px;
-      font-style: italic;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .testimonial-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--dark-3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-weight: bold;
-    }
-    
-    .testimonial-info h4 {
-      margin: 0;
-      font-size: 1rem;
-    }
-    
-    .testimonial-info p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    /* CALCULATOR */
+    .calc{display:grid; gap:12px}
+    .row{display:grid; grid-template-columns:1fr; gap:12px}
+    @media(min-width:720px){ .row{grid-template-columns:repeat(2,1fr)} }
+    label{font-weight:700; color:var(--primary); font-size:.9rem}
+    input, select{background:#071125; border:1px solid rgba(255,255,255,.03); padding:12px; border-radius:10px; color:#eaf0ff; outline:none}
+    .result{margin-top:12px; padding:12px; border-radius:12px; font-weight:800; text-align:center; background:rgba(255,255,255,.02)}
 
-    /* Trading Strategies */
-    .strategy-card {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .strategy-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .strategy-meta {
-      display: flex;
-      gap: 12px;
-      margin: 16px 0;
-      flex-wrap: wrap;
-    }
-    
-    .strategy-tag {
-      padding: 4px 10px;
-      background: rgba(255,215,0,0.1);
-      color: var(--primary);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    
-    .strategy-image {
-      height: 180px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin: 16px 0;
-      background: var(--dark-3);
-      position: relative;
-    }
-    
-    .strategy-image:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, var(--secondary), var(--primary));
-      opacity: 0.2;
-    }
-    
-    .strategy-actions {
-      margin-top: auto;
-      display: flex;
-      gap: 12px;
-    }
+    /* CHART */
+    .chart-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px}
+    .tab{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.02); color:var(--light-muted); cursor:pointer; border:1px solid transparent}
+    .tab.active{background:var(--primary); color:#081018; box-shadow:0 8px 22px rgba(255,200,30,.08);}
 
-    /* Footer */
-    footer{
-      margin-top:48px;
-      border-top:1px solid rgba(255,215,0,.15);
-      background:linear-gradient(to right, rgba(0,91,188,.16), rgba(11,11,15,.95));
-      padding: 48px 0 24px;
-    }
-    
-    .footer-inner{
-      max-width:1200px;
-      margin:auto;
-      padding:0 20px;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .footer-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .footer-brand .title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-    
-    .footer-description {
-      color: var(--muted);
-      margin-bottom: 20px;
-      max-width: 300px;
-    }
-    
-    .footer-heading {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer-heading:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background: var(--primary);
-    }
-    
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    
-    .footer-links a {
-      color: var(--muted);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .footer-links a:hover {
-      color: var(--primary);
-      padding-left: 5px;
-    }
-    
-    .footer-links i {
-      font-size: 0.9rem;
-      width: 20px;
-    }
-    
-    .social{
-      display:flex;
-      gap:16px;
-      margin:20px 0;
-    }
-    
-    .social a{
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: var(--dark-2);
-      color:#e8ecf7;
-      transition: var(--transition);
-    }
-    
-    .social a:hover{
-      background: var(--primary);
-      color: var(--dark);
-      transform: translateY(-3px);
-    }
-    
-    .copy{
-      color:var(--muted);
-      font-size:.9rem;
-      text-align: center;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 30px;
-    }
-    
-    .disclaimer{
-      margin-top:24px;
-      color:#a9afc0;
-      font-size:.9rem;
-      max-width:900px;
-      margin-inline:auto;
-      text-align: center;
-      padding: 16px;
-      background: rgba(0,0,0,0.2);
-      border-radius: var(--radius);
-    }
-    
-    /* TradingView Widget */
-    .tradingview-widget-container {
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    
-    /* Back to top button */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: var(--transition);
-      opacity: 0;
-      visibility: hidden;
-      z-index: 99;
-    }
-    
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    }
-    
-    /* Mobile Navigation */
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-      
-      .links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: var(--dark);
-        flex-direction: column;
-        padding: 20px;
-        gap: 10px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        border-top: 1px solid var(--edge);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition);
-      }
-      
-      .links.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .links a {
-        border-radius: var(--radius);
-        text-align: center;
-      }
-      
-      .hero-inner {
-        padding: 40px 20px;
-        text-align: center;
-      }
-      
-      .cta {
-        justify-content: center;
-      }
-      
-      .section-title {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-      }
+    /* TESTIMONIALS */
+    .testimonials{display:grid; grid-template-columns:1fr; gap:12px}
+    .test-track{display:flex; gap:14px; overflow:hidden; padding:8px}
+    .test{min-width:260px; background:linear-gradient(180deg,#06132a,#071426); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,.02)}
+    .test p{margin:0; font-style:italic}
+
+    /* FOOTER */
+    footer{margin-top:36px; padding:36px 0; border-top:1px solid rgba(255,215,0,.04); background:linear-gradient(90deg, rgba(0,0,0,.02), transparent)}
+
+    /* Back to top */
+    .back-to-top{position:fixed; right:26px; bottom:26px; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--primary); color:#061018; box-shadow:0 8px 26px rgba(255,200,20,.12); cursor:pointer; transition:var(--trans); transform:translateY(10px); opacity:0; visibility:hidden; z-index:2000}
+    .back-to-top.visible{opacity:1; visibility:visible; transform:translateY(0)}
+
+    /* Mobile */
+    @media(max-width:880px){
+      .nav-links{position:fixed; left:0; right:0; top:68px; background:var(--bg); gap:0; flex-direction:column; padding:18px; transform:translateY(-110%); transition:var(--trans); border-top:1px solid rgba(255,255,255,.02)}
+      .nav-links.open{transform:translateY(0)}
+      .nav-toggle{display:block}
     }
   </style>
 </head>
@@ -881,248 +126,187 @@
 
   <!-- NAV -->
   <nav class="nav" id="navbar">
-    <div class="nav-inner">
+    <div class="nav-inner container">
       <div class="brand">
         <div class="badge">BFK</div>
         <div>
           <div class="title">Bullet Forex King</div>
-          <div class="meta"><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</div>
+          <div style="font-size:.82rem; color:var(--muted)"><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</div>
         </div>
       </div>
-      <button class="nav-toggle" id="navToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="links" id="navLinks">
-        <a class="active" href="#home">Home</a>
-        <a href="#charts">Charts</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#strategies">Strategies</a>
-        <a href="#education">Education</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
+          <a class="active" href="#home">Home</a>
+          <a href="#charts">Charts</a>
+          <a href="#calculator">Calculator</a>
+          <a href="#strategies">Strategies</a>
+          <a href="#education">Education</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header id="home" class="container hero">
-    <div class="hero-pattern"></div>
+  <header id="home" class="hero container" aria-label="Hero">
     <div class="hero-inner">
-      <div class="eyebrow">BFK • Institutional Trading Concepts</div>
-      <h1>Master Forex Trading with Precision</h1>
-      <p class="lead">Advanced Smart Money Concepts • Liquidity Analysis • Institutional Order Flow • Price Action Strategies</p>
-      <div class="cta">
-        <a href="#calculator" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Advanced Calculator</a>
-        <a href="#education" class="btn btn-ghost"><i class="fa-solid fa-graduation-cap"></i> Learn SMC</a>
-        <a href="#strategies" class="btn btn-secondary"><i class="fa-solid fa-chart-line"></i> Trading Strategies</a>
+      <div>
+        <span class="eyebrow">BFK • Institutional Trading Concepts</span>
+        <h1>Master Forex Trading with Precision</h1>
+        <p class="lead">Advanced Smart Money Concepts • Liquidity Analysis • Institutional Order Flow • Price Action</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#calculator"><i class="fa-solid fa-calculator"></i> Advanced Calculator</a>
+          <a class="btn btn-ghost" href="#education"><i class="fa-solid fa-graduation-cap"></i> Learn SMC</a>
+          <a class="btn btn-secondary" href="#strategies"><i class="fa-solid fa-chart-line"></i> Strategies</a>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="container">
-
     <!-- STATS -->
-    <section class="stats">
-      <div class="grid cols-4">
-        <div class="card" style="text-align: center;">
-          <h3>5+ Years</h3>
-          <p class="muted">Trading Experience</p>
+    <section aria-labelledby="impact" class="card">
+      <h3 id="impact">Our Impact</h3>
+      <div class="stats-grid" style="margin-top:12px">
+        <div class="stat">
+          <div class="num counter" data-target="500">0</div>
+          <div style="color:var(--muted)">Traders Educated</div>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3>500+</h3>
-          <p class="muted">Traders Educated</p>
+        <div class="stat">
+          <div class="num counter" data-target="15">0</div>
+          <div style="color:var(--muted)">Trading Strategies</div>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3>15+</h3>
-          <p class="muted">Trading Strategies</p>
+        <div class="stat">
+          <div class="num counter" data-target="24">0</div>
+          <div style="color:var(--muted)">Support (hrs/day)</div>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3>24/7</h3>
-          <p class="muted">Support Community</p>
+        <div class="stat">
+          <div class="num counter" data-target="5">0</div>
+          <div style="color:var(--muted)">Years Experience</div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-circle-info" style="color:var(--primary)"></i>
-          <h2>About Us</h2>
+    <!-- ABOUT + FOUNDER -->
+    <section id="about" class="grid cols-2" style="margin-top:20px">
+      <article class="card">
+        <h3>About Bullet Forex King</h3>
+        <p>We transform retail traders into institutional-level thinkers through Smart Money Concepts (SMC), risk management, and live market maps. Learn to read institutional order flow and trade with edge.</p>
+        <div style="margin-top:12px" class="card">
+          <strong style="color:var(--primary)">Our Vision:</strong>
+          <p style="margin:8px 0 0">Build a community of disciplined traders who understand institutional dynamics and manage risk like professionals.</p>
         </div>
-        <p class="section-subtitle">Bullet Forex King is dedicated to transforming retail traders into institutional-level thinkers with advanced trading methodologies.</p>
-      </div>
-      <div class="grid cols-2">
-        <article class="card">
-          <p><strong>Bullet Forex King</strong> was established to guide traders in Namibia and globally through the complexities of the forex market. We combine advanced <em>Smart Money Concepts (SMC)</em> with practical tools to help traders master consistency and discipline.</p>
-          <div class="tip"><strong>Our Vision:</strong> Build a strong community of traders who understand institutional concepts, manage risk professionally, and grow sustainably in the forex market.</div>
-          <div class="tip"><strong>Our Mission:</strong> Provide education, tools, and mentorship that bridge the gap between retail and institutional trading knowledge—empowering disciplined, skillful, and independent traders.</div>
-        </article>
+      </article>
 
-        <aside class="card founder">
-          <div class="avatar">LM</div>
+      <aside class="card">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#ffd86b); display:grid;place-items:center; font-weight:900; color:#081018; font-size:28px; box-shadow:0 12px 40px rgba(255,200,20,.06)">LM</div>
           <div>
-            <h3>Lifasi Malumo Lucky — Core Founder & CEO</h3>
-            <p class="muted">Driven by a passion for trading and education, Lifasi founded Bullet Forex King to transform traders from all walks of life into confident, strategic, and consistently profitable market participants.</p>
-            <div class="strategy-meta">
-              <span class="strategy-tag">Price Action</span>
-              <span class="strategy-tag">SMC Expert</span>
-              <span class="strategy-tag">Risk Management</span>
+            <h3 style="margin:0">Lifasi Malumo Lucky</h3>
+            <p style="margin:6px 0 0;color:var(--muted)">Core Founder & CEO — trader, mentor and educator focused on institutional-level trading strategies and consistency.</p>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">Price Action</span>
+              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">SMC Expert</span>
+              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">Risk Mgmt</span>
             </div>
           </div>
-        </aside>
-      </div>
+        </div>
+      </aside>
     </section>
 
-    <!-- TRADING STRATEGIES -->
-    <section id="strategies">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-chess-knight" style="color:var(--primary)"></i>
-          <h2>Advanced Trading Strategies</h2>
+    <!-- STRATEGIES -->
+    <section id="strategies" class="card" style="margin-top:20px">
+      <h3>Advanced Trading Strategies</h3>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:12px">
+        <div class="card">
+          <h3>Liquidity Grab & FVG</h3>
+          <p>Spot institutional liquidity raids then trade fair value gaps for reversals on aligned timeframes.</p>
         </div>
-        <p class="section-subtitle">Professional strategies combining Smart Money Concepts with technical analysis for high-probability trading</p>
-      </div>
-      
-      <div class="grid cols-3">
-        <!-- Liquidity Grab Strategy -->
-        <article class="card strategy-card">
-          <div class="strategy-content">
-            <h3><div class="card-icon"><i class="fa-solid fa-fill-drip"></i></div> Liquidity Grab & FVG</h3>
-            <p>Identify institutional liquidity raids followed by Fair Value Gaps for high-probability reversal entries.</p>
-            <div class="strategy-image"></div>
-            <div class="strategy-meta">
-              <span class="strategy-tag">SMC</span>
-              <span class="strategy-tag">Reversal</span>
-              <span class="strategy-tag">5M-1H</span>
-            </div>
-            <div class="strategy-actions">
-              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
-              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Order Block Strategy -->
-        <article class="card strategy-card">
-          <div class="strategy-content">
-            <h3><div class="card-icon"><i class="fa-solid fa-layer-group"></i></div> Order Block Mitigation</h3>
-            <p>Trade the retracement to previous order blocks after a strong impulsive move for continuation entries.</p>
-            <div class="strategy-image"></div>
-            <div class="strategy-meta">
-              <span class="strategy-tag">SMC</span>
-              <span class="strategy-tag">Continuation</span>
-              <span class="strategy-tag">1H-4H</span>
-            </div>
-            <div class="strategy-actions">
-              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
-              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- BOS/CHoCH Strategy -->
-        <article class="card strategy-card">
-          <div class="strategy-content">
-            <h3><div class="card-icon"><i class="fa-solid fa-code-branch"></i></div> BOS/CHoCH Breakout</h3>
-            <p>Trade Break of Structure and Change of Character patterns with liquidity confluence for trend confirmation.</p>
-            <div class="strategy-image"></div>
-            <div class="strategy-meta">
-              <span class="strategy-tag">Market Structure</span>
-              <span class="strategy-tag">Breakout</span>
-              <span class="strategy-tag">4H-Daily</span>
-            </div>
-            <div class="strategy-actions">
-              <a href="#" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.9rem;">Learn More</a>
-              <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Strategy PDF</a>
-            </div>
-          </div>
-        </article>
+        <div class="card">
+          <h3>Order Block Mitigation</h3>
+          <p>Trade mitigations to order blocks after impulsive moves — ideal for low-risk entries.</p>
+        </div>
+        <div class="card">
+          <h3>BOS / CHoCH Breakout</h3>
+          <p>Use Break of Structure and Change of Character combined with liquidity confluence for strong trend plays.</p>
+        </div>
       </div>
     </section>
 
     <!-- CHARTS -->
-    <section id="charts">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-chart-line" style="color:var(--primary)"></i>
-          <h2>Live Market Analysis</h2>
+    <section id="charts" class="card" style="margin-top:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 style="margin:0">Live Market Charts</h3>
+        <div class="chart-tabs" id="chartTabs" role="tablist" aria-label="Chart pairs">
+          <button class="tab active" data-symbol="FX:EURUSD">EURUSD</button>
+          <button class="tab" data-symbol="FX:GBPUSD">GBPUSD</button>
+          <button class="tab" data-symbol="FX:USDJPY">USDJPY</button>
+          <button class="tab" data-symbol="OANDA:XAUUSD">XAUUSD</button>
         </div>
-        <p class="section-subtitle">Real-time charts with Smart Money Concepts annotations for XAUUSD, EURUSD, and other major pairs</p>
       </div>
-      <div class="card">
-        <div id="tradingview_chart" style="height:520px;"></div>
+
+      <div id="tradingview_wrapper" style="margin-top:12px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.02)">
+        <div id="tradingview_chart" style="height:520px; width:100%"></div>
       </div>
     </section>
 
     <!-- CALCULATOR -->
-    <section id="calculator">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-calculator" style="color:var(--primary)"></i>
-          <h2>Advanced Forex Risk Calculator</h2>
+    <section id="calculator" class="card" style="margin-top:20px">
+      <h3>Advanced Forex Risk Calculator</h3>
+      <div class="calc" style="margin-top:12px">
+        <div class="row">
+          <div>
+            <label for="balance">Account Balance (USD)</label>
+            <input id="balance" type="number" placeholder="e.g. 5000">
+          </div>
+          <div>
+            <label for="risk">Risk % per Trade</label>
+            <input id="risk" type="number" placeholder="e.g. 2" value="2">
+          </div>
         </div>
-        <p class="section-subtitle">Calculate precise position sizing with advanced risk parameters and trading metrics</p>
-      </div>
-      <div class="card">
-        <div class="calc">
-          <div class="row">
-            <div>
-              <label for="balance">Account Balance (USD)</label>
-              <input id="balance" type="number" placeholder="e.g. 5000">
-            </div>
-            <div>
-              <label for="risk">Risk % per Trade</label>
-              <input id="risk" type="number" placeholder="e.g. 2" value="2">
-            </div>
+        <div class="row" style="margin-top:6px">
+          <div>
+            <label for="stoploss">Stop Loss (pips)</label>
+            <input id="stoploss" type="number" placeholder="e.g. 30">
           </div>
-          <div class="row">
-            <div>
-              <label for="stoploss">Stop Loss (pips)</label>
-              <input id="stoploss" type="number" placeholder="e.g. 30">
-            </div>
-            <div>
-              <label for="pipvalue">Pip Value ($ per lot)</label>
-              <input id="pipvalue" type="number" placeholder="e.g. 10">
-            </div>
+          <div>
+            <label for="pair">Currency Pair</label>
+            <select id="pair">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="XAUUSD">XAU/USD</option>
+              <option value="other">Other</option>
+            </select>
           </div>
-          <div class="row">
-            <div>
-              <label for="entry">Entry Price</label>
-              <input id="entry" type="number" placeholder="e.g. 1.0850">
-            </div>
-            <div>
-              <label for="pair">Currency Pair</label>
-              <select id="pair">
-                <option value="EURUSD">EUR/USD</option>
-                <option value="GBPUSD">GBP/USD</option>
-                <option value="USDJPY">USD/JPY</option>
-                <option value="XAUUSD">XAU/USD (Gold)</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="calculateRisk()"><i class="fa-solid fa-equals"></i> Calculate Position Size</button>
-          <div id="result" class="result muted"></div>
-          
-          <div class="calculator-advanced">
-            <button class="calculator-toggle" onclick="toggleAdvanced()">
-              <i class="fa-solid fa-caret-down" id="advanced-icon"></i>
-              Advanced Risk Metrics
-            </button>
-            <div id="advanced-metrics" style="display: none;">
-              <div class="row">
-                <div>
-                  <label for="rrr">Risk/Reward Ratio</label>
-                  <input id="rrr" type="number" placeholder="e.g. 1.5" value="1.5">
-                </div>
-                <div>
-                  <label for="winrate">Win Rate (%)</label>
-                  <input id="winrate" type="number" placeholder="e.g. 60">
-                </div>
+          <button class="btn btn-ghost" onclick="autoFillExample()">Fill Example</button>
+        </div>
+
+        <div id="result" class="result muted" style="margin-top:12px">Enter values and click calculate.</div>
+
+        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,.02); padding-top:12px">
+          <button class="btn" onclick="toggleAdvanced()"><i class="fa-solid fa-caret-down" id="advIcon"></i> Advanced Metrics</button>
+          <div id="advanced" style="margin-top:12px;display:none">
+            <div class="row">
+              <div>
+                <label for="rrr">Risk/Reward Ratio</label>
+                <input id="rrr" type="number" value="1.5" placeholder="e.g. 1.5">
               </div>
-              <button class="btn btn-ghost" onclick="calculateAdvanced()"><i class="fa-solid fa-calculator"></i> Calculate Performance Metrics</button>
-              <div id="advanced-result" class="result muted"></div>
+              <div>
+                <label for="winrate">Win Rate (%)</label>
+                <input id="winrate" type="number" placeholder="e.g. 60">
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-ghost" onclick="calculateAdvanced()">Calculate Performance</button>
+              <div id="advancedResult" class="result muted" style="margin-top:10px"></div>
             </div>
           </div>
         </div>
@@ -1130,373 +314,203 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="education">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i>
-          <h2>Smart Money Concepts Mastery</h2>
-        </div>
-        <p class="section-subtitle">Learn institutional trading strategies and how to identify smart money movements in the market</p>
-      </div>
-
-      <div class="grid">
-        <!-- Liquidity Pools -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-fill-drip"></i></div> Liquidity Pools & Sweeps</h3>
-          <p>Liquidity pools are price levels where a large cluster of stop orders sit—commonly around obvious swing highs and lows. Institutions target these pools to generate the volume needed for large moves.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> Look for equal highs/lows that get taken out with momentum but quickly reverse—this indicates a liquidity grab. The subsequent move often targets the opposite side's liquidity.</div>
-          <div class="tip"><strong>Trading Tip:</strong> When price aggressively taps a liquidity pool and immediately rejects, it often signals a liquidity grab. Combine with a structure break (BOS/CHoCH) for higher-probability entries.</div>
-        </article>
-
-        <!-- Order Blocks -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-layer-group"></i></div> Order Blocks & Mitigation</h3>
-          <p>An order block is the final bullish/bearish candle before a strong impulsive move. These zones mark areas where institutions placed significant orders. Mitigation occurs when price returns to these blocks to "fill" remaining orders.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> The most powerful order blocks form after a liquidity sweep. The mitigation block often provides the highest probability entry for the next impulsive move.</div>
-          <div class="tip"><strong>Trading Tip:</strong> After a sharp move, price frequently revisits the origin candle (order block) to mitigate institutional orders. Look for rejection wicks, engulfing patterns, or LTF BOS as confirmation.</div>
-        </article>
-
-        <!-- Market Structure -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-diagram-project"></i></div> Market Structure Shifts</h3>
-          <p>Structure is the backbone of analysis: sequences of HH/HL denote bullish conditions; LH/LL denote bearish conditions. A Break of Structure (BOS) confirms momentum, while a Change of Character (CHoCH) signals potential reversal.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> The first pullback after a BOS often creates the most efficient order block. A CHoCH that occurs after a liquidity sweep is a high-probability reversal signal.</div>
-          <div class="tip"><strong>Trading Tip:</strong> Align with the higher-timeframe trend. If the Daily is bullish (HH+HL), seek longs; use lower-timeframe CHoCH/BOS to trigger entries.</div>
-        </article>
-
-        <!-- Supply & Demand -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div> Supply & Demand Zones</h3>
-          <p>Zones form where sharp moves leave imbalances—revealing where buyers or sellers dominated. These zones become future targets for price returns.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> The strongest zones form after a liquidity sweep and BOS. These zones often align with institutional order blocks and previous daily/weekly highs/lows.</div>
-          <div class="tip"><strong>Trading Tip:</strong> In bullish trends, buy at demand; in bearish trends, sell at supply. Wait for price confirmation (candlesticks or structure shifts).</div>
-        </article>
-
-        <!-- FVG -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-grip-lines-vertical"></i></div> Fair Value Gaps (FVG)</h3>
-          <p>FVGs are three-candle imbalances where the first and third candles don't overlap, leaving an inefficiency that price tends to rebalance. These act as mini supply/demand zones.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> FVGs that form after a liquidity sweep and BOS often become the "roadmap" for price, acting as support in bullish trends and resistance in bearish trends.</div>
-          <div class="tip"><strong>Trading Tip:</strong> Mark FVGs on 1H/4H. When price retraces into the gap and rejects, continuation is likely—especially when aligned with OBs and HTF bias.</div>
-        </article>
-
-        <!-- Mitigation Blocks -->
-        <article class="card">
-          <h3><div class="card-icon"><i class="fa-solid fa-bullseye"></i></div> Mitigation Blocks & Entries</h3>
-          <p>When price revisits a prior order block to close remaining institutional orders, the level acts as a mitigation block—often giving precise entries with minimal risk.</p>
-          <div class="tip"><strong>Advanced Insight:</strong> The best mitigation entries occur when a liquidity sweep happens first, then price returns to the mitigation block. This often creates a "liquidity vacuum" that propels price.</div>
-          <div class="tip"><strong>Trading Tip:</strong> Look for mitigation at previously violated OBs, ideally paired with a liquidity sweep and BOS/CHoCH confluence.</div>
-        </article>
+    <section id="education" class="card" style="margin-top:20px">
+      <h3>Smart Money Concepts Mastery</h3>
+      <div style="display:grid; gap:10px; margin-top:12px">
+        <div class="card"><strong>Liquidity Pools & Sweeps</strong><p style="margin-top:8px;color:var(--muted)">Institutions hunt stop clusters. Identify sweeps and you identify where they filled orders.</p></div>
+        <div class="card"><strong>Order Blocks & Mitigation</strong><p style="margin-top:8px;color:var(--muted)">The origin candle before a strong impulse — the best mitigations happen after liquidity grabs.</p></div>
       </div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-quote-left" style="color:var(--primary)"></i>
-          <h2>Success Stories</h2>
-        </div>
-        <p class="section-subtitle">Hear from traders who have transformed their trading using our Smart Money Concepts approach</p>
-      </div>
-      
-      <div class="grid cols-3">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p>"The liquidity concepts completely changed how I view the markets. I've increased my win rate by 40% since implementing these strategies."</p>
-          </div>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JM</div>
-            <div class="testimonial-info">
-              <h4>John M.</h4>
-              <p>Forex Trader, 3 years</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p>"The order block mitigation strategy alone was worth the price of the course. I'm now consistently profitable for the first time in my trading career."</p>
-          </div>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">SK</div>
-            <div class="testimonial-info">
-              <h4>Sarah K.</h4>
-              <p>Swing Trader, 2 years</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p>"The mentorship program helped me understand how institutions actually trade. I've doubled my account in 6 months using these concepts."</p>
-          </div>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">TP</div>
-            <div class="testimonial-info">
-              <h4>Thomas P.</h4>
-              <p>Day Trader, 4 years</p>
-            </div>
-          </div>
-        </div>
+    <section id="testimonials" class="card" style="margin-top:20px">
+      <h3>Success Stories</h3>
+      <div class="test-track" id="testTrack" style="margin-top:12px">
+        <div class="test"><p>"The liquidity concepts changed my trading — my win rate improved 40%."</p><div style="margin-top:8px;font-weight:700">— John M.</div></div>
+        <div class="test"><p>"Order block mitigation gave me consistent low-risk entries."</p><div style="margin-top:8px;font-weight:700">— Sarah K.</div></div>
+        <div class="test"><p>"Mentorship doubled my account in 6 months."</p><div style="margin-top:8px;font-weight:700">— Thomas P.</div></div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-envelope" style="color:var(--primary)"></i>
-          <h2>Contact Us</h2>
-        </div>
-        <p class="section-subtitle">Reach out for training, mentorship, or questions about our trading strategies</p>
-      </div>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</h3>
-          <p class="muted">Bullet Forex King</p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-phone"></i> +264 81 723 9818</h3>
-          <p class="muted">Call or WhatsApp</p>
-          <p><a class="btn btn-ghost" href="tel:+264817239818"><i class="fa-solid fa-phone-volume"></i> Call Now</a></p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-at"></i> info@bulletforexking.com</h3>
-          <p class="muted">For training, mentorship, and signals</p>
-        </div>
-        <div class="card">
-          <h3><i class="fa-solid fa-user-tie"></i> Founder</h3>
-          <p><strong>Lifasi Malumo Lucky</strong><br/>Core Founder &amp; CEO</p>
-          <div class="social" style="margin-top: 16px;">
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-          </div>
-        </div>
+    <section id="contact" class="card" style="margin-top:20px">
+      <h3>Contact</h3>
+      <p style="margin:8px 0 0">Email: <a href="mailto:info@bulletforexking.com">info@bulletforexking.com</a> · WhatsApp: <a href="tel:+264817239818">+264 81 723 9818</a></p>
+      <div style="margin-top:10px; display:flex; gap:8px">
+        <a class="btn btn-ghost" href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="btn btn-ghost" href="#"><i class="fab fa-telegram"></i> Telegram</a>
       </div>
     </section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="title">Bullet Forex King</div>
-          <p class="footer-description">Advanced Forex Education & Smart Money Concepts for serious traders.</p>
-          <div class="social">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-          </div>
-        </div>
-        
-        <div>
-          <h4 class="footer-heading">Education</h4>
-          <ul class="footer-links">
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Money Concepts</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Strategies</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Risk Management</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Mentorship Program</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Video Courses</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="footer-heading">Resources</h4>
-          <ul class="footer-links">
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Calculators</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Journal</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-          </ul>
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="color:var(--muted)">© 2023–2025 Bullet Forex King — Risk Disclaimer: Trading carries risk. Education only.</div>
+        <div style="display:flex;gap:10px">
+          <a class="btn btn-ghost" href="#"><i class="fab fa-facebook"></i></a>
+          <a class="btn btn-ghost" href="#"><i class="fab fa-x-twitter"></i></a>
+          <a class="btn btn-ghost" href="#"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      
-      <p class="disclaimer">
-        <strong>Risk Disclaimer:</strong> Trading forex and CFDs carries a high level of risk and may not be suitable for all investors.
-        Past performance is not indicative of future results. The information on this website is for educational purposes only.
-        We do not guarantee any results or profits. You may lose some or all of your invested capital.
-      </p>
-      <p class="copy">© 2023–2025 Bullet Forex King. All rights reserved.</p>
-    </div>
-  </footer>
-  
-  <a href="#" class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-  </a>
+    </footer>
+  </main>
 
-  <!-- SCRIPTS -->
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- TradingView library -->
   <script src="https://s3.tradingview.com/tv.js"></script>
-  <script>
-    // TradingView
-    new TradingView.widget({
-      width: "100%",
-      height: 520,
-      symbol: "OANDA:XAUUSD",
-      interval: "15",
-      timezone: "Etc/UTC",
-      theme: "dark",
-      style: "1",
-      locale: "en",
-      toolbar_bg: "#000000",
-      enable_publishing: false,
-      hide_top_toolbar: false,
-      studies: [
-        "MASimple@tv-basicstudies"
-      ],
-      container_id: "tradingview_chart"
-    });
 
-    // Mobile Navigation
+  <script>
+    /* Mobile nav toggle */
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
-    
     navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      navToggle.innerHTML = navLinks.classList.contains('active') ? 
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    
-    // Smooth scroll + active link
-    document.querySelectorAll('.links a, .footer-links a').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if(!id.startsWith('#')) return;
-        e.preventDefault();
-        const el = document.querySelector(id);
-        if(el){
-          // Close mobile menu if open
-          if(navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-          }
-          
-          window.scrollTo({top: el.offsetTop - 80, behavior:'smooth'});
-          document.querySelectorAll('.links a').forEach(x => x.classList.remove('active'));
-          a.classList.add('active');
-        }
-      });
-    });
-    
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-    
-    // Back to top button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 500) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-    
-    backToTop.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      navLinks.classList.toggle('open');
+      navToggle.innerHTML = navLinks.classList.contains('open') ? '<i class="fa-solid fa-times"></i>' : '<i class="fa-solid fa-bars"></i>';
     });
 
-    // Risk Calculator
+    /* Scroll -> active nav */
+    const sections = document.querySelectorAll('main section, header');
+    const navA = document.querySelectorAll('.nav-links a');
+    function onScrollActivate(){
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop - 120;
+        if(window.scrollY >= top) current = s.id || 'home';
+      });
+      navA.forEach(a => {
+        a.classList.remove('active');
+        if(a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    }
+    window.addEventListener('scroll', onScrollActivate);
+    onScrollActivate();
+
+    /* Counters (run once when visible) */
+    const counters = document.querySelectorAll('.counter');
+    const isInViewport = el => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom >= 0;
+    };
+    function runCounters(){
+      counters.forEach(c => {
+        if(c.dataset.ran) return;
+        if(isInViewport(c)){
+          const target = +c.dataset.target;
+          let i = 0;
+          const step = Math.max(1, Math.floor(target / 160));
+          const t = setInterval(()=> {
+            i += step;
+            if(i >= target){ c.textContent = target; c.dataset.ran = '1'; clearInterval(t); }
+            else c.textContent = i;
+          }, 18);
+        }
+      });
+    }
+    window.addEventListener('scroll', runCounters);
+    runCounters();
+
+    /* Back to top */
+    const back = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 420) back.classList.add('visible'); else back.classList.remove('visible');
+    });
+    back.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    /* Testimonials simple auto-scroll */
+    const testTrack = document.getElementById('testTrack');
+    let testIndex = 0;
+    setInterval(()=> {
+      testIndex = (testIndex + 1) % testTrack.children.length;
+      testTrack.scrollTo({ left: testIndex * (testTrack.children[0].offsetWidth + 14), behavior:'smooth' });
+    }, 3800);
+
+    /* Calculator */
     function calculateRisk(){
       const b = parseFloat(document.getElementById('balance').value);
       const r = parseFloat(document.getElementById('risk').value);
       const s = parseFloat(document.getElementById('stoploss').value);
-      const p = parseFloat(document.getElementById('pipvalue').value);
+      const pair = document.getElementById('pair').value;
       const out = document.getElementById('result');
-
-      if([b,r,s,p].some(x => isNaN(x) || x <= 0)){
-        out.className = 'result err';
-        out.textContent = 'Please enter valid positive numbers in all fields.';
-        return;
-      }
-      
+      if([b,r,s].some(x => !x || x <= 0)){ out.className='result muted'; out.textContent='Please enter valid positive numbers.'; return; }
+      // pip value quick estimate: for XAU use 1, JPY pairs adjust
+      let pipVal = 10;
+      if(pair === 'USDJPY') pipVal = 9.5;
+      if(pair === 'XAUUSD') pipVal = 1;
       const riskAmount = b * (r/100);
-      const lotSize = riskAmount / (s * p);
-      out.className = 'result ok';
-      out.innerHTML = `
-        <div><strong>Recommended Lot Size:</strong> ${lotSize.toFixed(2)} lots</div>
-        <div><strong>Risk Amount:</strong> $${riskAmount.toFixed(2)}</div>
-        <div><strong>Risk Percentage:</strong> ${r}% of account</div>
-      `;
+      const lotSize = riskAmount / (s * pipVal);
+      out.className='result';
+      out.innerHTML = `<div style="font-size:1.05rem"><strong>Recommended Lot Size:</strong> ${lotSize.toFixed(2)} lots</div>
+                       <div style="margin-top:6px;color:var(--muted)"><strong>Risk Amount:</strong> $${riskAmount.toFixed(2)} • Risk ${r}%</div>`;
     }
-    
-    function calculateAdvanced() {
+    function autoFillExample(){
+      document.getElementById('balance').value = 5000;
+      document.getElementById('risk').value = 2;
+      document.getElementById('stoploss').value = 30;
+      document.getElementById('pair').value = 'EURUSD';
+      calculateRisk();
+    }
+
+    /* Advanced calc */
+    function toggleAdvanced(){
+      const adv = document.getElementById('advanced');
+      const icon = document.getElementById('advIcon');
+      if(adv.style.display === 'none' || !adv.style.display){ adv.style.display='block'; icon.className='fa-solid fa-caret-up' } else { adv.style.display='none'; icon.className='fa-solid fa-caret-down' }
+    }
+    function calculateAdvanced(){
       const rrr = parseFloat(document.getElementById('rrr').value);
-      const winrate = parseFloat(document.getElementById('winrate').value);
-      const out = document.getElementById('advanced-result');
-      
-      if(isNaN(rrr) || isNaN(winrate) || rrr <= 0 || winrate <= 0 || winrate >= 100) {
-        out.className = 'result err';
-        out.textContent = 'Please enter valid values for R:R ratio (＞0) and win rate (0-100).';
-        return;
-      }
-      
-      const expectancy = (winrate/100 * rrr) - ((1 - winrate/100) * 1);
-      const outText = expectancy > 0 ? 
-        `Positive expectancy of ${expectancy.toFixed(2)}R per trade. Keep it up!` :
-        `Negative expectancy of ${expectancy.toFixed(2)}R per trade. Improve your strategy.`;
-      
-      out.className = expectancy > 0 ? 'result ok' : 'result err';
-      out.innerHTML = `
-        <div><strong>Strategy Expectancy:</strong> ${expectancy.toFixed(2)}R per trade</div>
-        <div>${outText}</div>
-        <div style="margin-top: 10px; font-size: 0.9em;">Based on ${winrate}% win rate and 1:${rrr} risk-reward ratio</div>
-      `;
+      const win = parseFloat(document.getElementById('winrate').value);
+      const out = document.getElementById('advancedResult');
+      if(isNaN(rrr) || isNaN(win) || rrr <= 0 || win <= 0 || win >= 100){ out.className='result muted'; out.textContent='Please enter valid values.'; return; }
+      const expectancy = (win/100 * rrr) - ((1 - win/100) * 1);
+      out.className='result';
+      out.innerHTML = `<div><strong>Expectancy:</strong> ${expectancy.toFixed(2)}R per trade</div><div style="margin-top:6px;color:var(--muted)">Based on ${win}% win rate and 1:${rrr} R:R</div>`;
     }
-    
-    function toggleAdvanced() {
-      const advanced = document.getElementById('advanced-metrics');
-      const icon = document.getElementById('advanced-icon');
-      
-      if(advanced.style.display === 'none') {
-        advanced.style.display = 'block';
-        icon.className = 'fa-solid fa-caret-up';
-      } else {
-        advanced.style.display = 'none';
-        icon.className = 'fa-solid fa-caret-down';
-      }
-    }
-    
-    // Auto-calculate pip value based on pair selection
-    document.getElementById('pair').addEventListener('change', function() {
-      const pipValueInput = document.getElementById('pipvalue');
-      const pairs = {
-        'EURUSD': 10,
-        'GBPUSD': 10,
-        'USDJPY': 9.5,
-        'XAUUSD': 1,
-        'other': 10
+
+    /* TradingView: initialize chart and allow switching symbol tabs */
+    let tvWidget = null;
+    function createTradingView(symbol='FX:EURUSD'){
+      if(tvWidget) tvWidget.remove();
+      const config = {
+        width: "100%",
+        height: 520,
+        symbol: symbol,
+        interval: "60",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#101426",
+        enable_publishing: false,
+        allow_symbol_change: true,
+        container_id: "tradingview_chart"
       };
-      
-      pipValueInput.value = pairs[this.value];
+      tvWidget = new TradingView.widget(config);
+    }
+    // create initial chart after library loads
+    window.addEventListener('load', ()=> {
+      // TradingView library might not be ready immediately; try-catch with small delay
+      const tryInit = () => { try { createTradingView('FX:EURUSD'); } catch(e){ setTimeout(tryInit,300); } };
+      tryInit();
     });
-    
-    window.calculateRisk = calculateRisk;
-    window.calculateAdvanced = calculateAdvanced;
-    window.toggleAdvanced = toggleAdvanced;
+
+    // Chart tabs switching
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', ()=> {
+        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+        btn.classList.add('active');
+        const sym = btn.dataset.symbol;
+        // re-create widget with new symbol
+        createTradingView(sym);
+        // scroll to chart for UX on mobile
+        document.getElementById('tradingview_chart').scrollIntoView({behavior:'smooth', block:'center'});
+      });
+    });
+
+    // small accessibility: allow keyboard nav close mobile menus on link click
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      if(navLinks.classList.contains('open')){ navLinks.classList.remove('open'); navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>'; }
+    }));
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-     
-
