@@ -1,516 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bullet Forex King — Advanced Forex Trading</title>
-
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bullet Forex King</title>
   <style>
-    :root{
-      --primary:#ffd700;
-      --secondary:#005bbc;
-      --bg:#070812;
-      --card:#0f1726;
-      --muted:#aab0c0;
-      --radius:16px;
-      --glass: rgba(255,255,255,0.03);
-      --shadow: 0 10px 30px rgba(0,0,0,.45);
-      --trans: all .28s ease;
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b1b3f;
+      color: white;
+      scroll-behavior: smooth;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:
-      radial-gradient(800px 300px at 10% -10%, rgba(0,91,188,.07), transparent),
-      radial-gradient(600px 200px at 110% 10%, rgba(255,215,0,.04), transparent),
-      var(--bg);
-      color:#e8eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
+    a { text-decoration: none; color: inherit; }
 
-    /* Layout */
-    .container{max-width:1150px; margin:0 auto; padding:28px 20px;}
-
-    /* NAV */
-    .nav{
-      position:sticky; top:0; z-index:9999;
-      background: linear-gradient(90deg, rgba(7,8,18,.86), rgba(0,0,0,.24));
-      border-bottom:1px solid rgba(255,215,0,.08);
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11, 27, 63, 0.95);
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
       backdrop-filter: blur(8px);
-      transition: var(--trans);
     }
-    .nav-inner{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px;}
-    .brand{display:flex; gap:12px; align-items:center;}
-    .badge{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#0b0b0f;background:linear-gradient(135deg,var(--primary),#ffda47); box-shadow:0 0 18px rgba(255,215,0,.22)}
-    .brand .title{font-weight:800;color:var(--primary); letter-spacing:.2px}
-    .nav-links{display:flex; gap:8px; align-items:center;}
-    .nav-links a{padding:8px 14px;border-radius:999px;color:#eaf0ff; font-weight:600; opacity:.95; transition:var(--trans); border:1px solid transparent;}
-    .nav-links a:hover, .nav-links a.active{ color:var(--primary); background:rgba(255,215,0,.06); border-color:rgba(255,215,0,.10) }
-    .nav-toggle{display:none; background:none; border:0; color:var(--primary); font-size:20px}
-
-    /* HERO */
-    .hero{
-      border-radius:20px; overflow:hidden; position:relative; margin-top:18px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.25)),
-        url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=6da8b7a5f0e5b23e0d8c4b7dcd8b3b4d');
-      background-size:cover; background-position:center;
-      border:1px solid rgba(255,215,0,.06); box-shadow:var(--shadow);
+    nav a {
+      margin: 0 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-    .hero-inner{display:grid; gap:14px; padding:64px 36px; align-items:center}
-    .eyebrow{display:inline-block;padding:6px 12px;background:rgba(255,215,0,.08); color:var(--primary); font-weight:700; border-radius:999px; letter-spacing:.14em; font-size:.85rem}
-    .hero h1{margin:0; font-size:clamp(28px,6vw,54px); line-height:1.03; font-weight:900;
-      background:linear-gradient(90deg,var(--primary),#ffd84d); -webkit-background-clip:text; color:transparent; text-shadow:0 6px 30px rgba(255,200,30,.07);
-      animation: floatGlow 3.8s ease-in-out infinite;
+    nav a.active, nav a:hover { color: gold; }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(11, 27, 63, 0.8), rgba(11, 27, 63, 0.8)), 
+                  url('https://images.unsplash.com/photo-1561414927-6d86591d0c4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      padding: 2rem;
     }
-    @keyframes floatGlow{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-
-    .lead{color:var(--light-muted,#dfe5f3); max-width:900px; font-size:1.05rem}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
-    .btn{display:inline-flex; gap:10px; align-items:center; padding:12px 18px; border-radius:12px; font-weight:800; cursor:pointer; border:1px solid transparent; transition:var(--trans)}
-    .btn-primary{background:var(--primary); color:#081018; border-color:#d4b300; box-shadow:0 8px 30px rgba(255,200,30,.12)}
-    .btn-ghost{background:transparent; color:var(--primary); border-color:rgba(255,215,0,.12); backdrop-filter: blur(6px)}
-    .btn-secondary{background:var(--secondary); color:white; border-color:rgba(26,115,232,.12)}
-
-    /* GRID helpers */
-    .grid{display:grid; gap:20px}
-    .cols-2{grid-template-columns:1fr;}
-    @media(min-width:720px){ .cols-2{grid-template-columns: 1fr 360px;} }
-
-    /* CARDS */
-    .card{background:linear-gradient(180deg,var(--card), #0b1220); border-radius:14px; padding:18px; border:1px solid rgba(255,255,255,0.02); box-shadow:var(--shadow); transition:var(--trans)}
-    .card h3{margin:0 0 10px; font-size:1.1rem}
-    .card p{margin:0; color:var(--muted)}
-
-    /* STATS */
-    .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:8px}
-    @media(max-width:900px){ .stats-grid{grid-template-columns:repeat(2,1fr)} }
-    .stat{padding:18px; border-radius:12px; text-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,215,0,.03)}
-    .stat .num{font-size:1.8rem; font-weight:900; color:var(--primary); letter-spacing:.6px}
-
-    /* CALCULATOR */
-    .calc{display:grid; gap:12px}
-    .row{display:grid; grid-template-columns:1fr; gap:12px}
-    @media(min-width:720px){ .row{grid-template-columns:repeat(2,1fr)} }
-    label{font-weight:700; color:var(--primary); font-size:.9rem}
-    input, select{background:#071125; border:1px solid rgba(255,255,255,.03); padding:12px; border-radius:10px; color:#eaf0ff; outline:none}
-    .result{margin-top:12px; padding:12px; border-radius:12px; font-weight:800; text-align:center; background:rgba(255,255,255,.02)}
-
-    /* CHART */
-    .chart-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px}
-    .tab{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.02); color:var(--light-muted); cursor:pointer; border:1px solid transparent}
-    .tab.active{background:var(--primary); color:#081018; box-shadow:0 8px 22px rgba(255,200,30,.08);}
-
-    /* TESTIMONIALS */
-    .testimonials{display:grid; grid-template-columns:1fr; gap:12px}
-    .test-track{display:flex; gap:14px; overflow:hidden; padding:8px}
-    .test{min-width:260px; background:linear-gradient(180deg,#06132a,#071426); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,.02)}
-    .test p{margin:0; font-style:italic}
-
-    /* FOOTER */
-    footer{margin-top:36px; padding:36px 0; border-top:1px solid rgba(255,215,0,.04); background:linear-gradient(90deg, rgba(0,0,0,.02), transparent)}
-
-    /* Back to top */
-    .back-to-top{position:fixed; right:26px; bottom:26px; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--primary); color:#061018; box-shadow:0 8px 26px rgba(255,200,20,.12); cursor:pointer; transition:var(--trans); transform:translateY(10px); opacity:0; visibility:hidden; z-index:2000}
-    .back-to-top.visible{opacity:1; visibility:visible; transform:translateY(0)}
-
-    /* Mobile */
-    @media(max-width:880px){
-      .nav-links{position:fixed; left:0; right:0; top:68px; background:var(--bg); gap:0; flex-direction:column; padding:18px; transform:translateY(-110%); transition:var(--trans); border-top:1px solid rgba(255,255,255,.02)}
-      .nav-links.open{transform:translateY(0)}
-      .nav-toggle{display:block}
+    .hero h1 {
+      font-size: 3rem;
+      color: gold;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      animation: glow 2s ease-in-out infinite alternate;
     }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px gold; }
+      to { text-shadow: 0 0 30px gold, 0 0 50px orange; }
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: gold;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #122357;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(255,215,0,0.5);
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .counter {
+      font-size: 2rem;
+      color: gold;
+      font-weight: bold;
+    }
+
+    /* Testimonials */
+    .testimonials { overflow: hidden; position: relative; }
+    .testimonial-track {
+      display: flex;
+      animation: slide 15s infinite linear;
+    }
+    .testimonial {
+      min-width: 300px;
+      background: #122357;
+      margin: 0 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Calculator */
+    .calculator input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    .calculator button {
+      background: gold;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .calculator button:hover { background: orange; }
+
+    /* Contact */
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+    form input, form textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+    form button {
+      background: gold;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    /* Community */
+    .community {
+      text-align: center;
+      background: linear-gradient(135deg, #122357, #0b1b3f);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+    }
+    .community h2 {
+      margin-bottom: 1rem;
+    }
+    .community p {
+      margin-bottom: 2rem;
+    }
+    .community a {
+      background: gold;
+      padding: 12px 20px;
+      border-radius: 10px;
+      color: black;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .community a:hover {
+      background: orange;
+    }
+
+    /* Back-to-Top */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: gold;
+      border: none;
+      padding: 12px;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 0 15px gold;
+    }
+
+    /* Footer */
+    footer {
+      background: #08142d;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      color: #ccc;
+    }
+    footer a { color: gold; margin: 0 10px; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="navbar">
-    <div class="nav-inner container">
-      <div class="brand">
-        <div class="badge">BFK</div>
-        <div>
-          <div class="title">Bullet Forex King</div>
-          <div style="font-size:.82rem; color:var(--muted)"><i class="fa-solid fa-location-dot"></i> Windhoek, Namibia</div>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:12px">
-        <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
-        <div class="nav-links" id="navLinks">
-          <a class="active" href="#home">Home</a>
-          <a href="#charts">Charts</a>
-          <a href="#calculator">Calculator</a>
-          <a href="#strategies">Strategies</a>
-          <a href="#education">Education</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">⚡ Bullet Forex King</div>
+    <div>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#mission">Mission</a>
+      <a href="#stats">Stats</a>
+      <a href="#education">Education</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#chart">Charts</a>
+      <a href="#community">Community</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="home" class="hero container" aria-label="Hero">
-    <div class="hero-inner">
-      <div>
-        <span class="eyebrow">BFK • Institutional Trading Concepts</span>
-        <h1>Master Forex Trading with Precision</h1>
-        <p class="lead">Advanced Smart Money Concepts • Liquidity Analysis • Institutional Order Flow • Price Action</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#calculator"><i class="fa-solid fa-calculator"></i> Advanced Calculator</a>
-          <a class="btn btn-ghost" href="#education"><i class="fa-solid fa-graduation-cap"></i> Learn SMC</a>
-          <a class="btn btn-secondary" href="#strategies"><i class="fa-solid fa-chart-line"></i> Strategies</a>
-        </div>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div>
+      <h1>Master Forex Trading with Precision</h1>
+      <p>Smart Money Concepts • Liquidity • Institutional Order Flow</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Bullet Forex King was established to guide traders through the complexities of the forex market, combining institutional strategies with practical tools for consistent success.</p>
+  </section>
+
+  <!-- Mission -->
+  <section id="mission">
+    <h2>Our Mission & Vision</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>To empower traders with knowledge, tools, and mentorship that foster discipline, consistency, and profitability in forex trading.</p>
+      </div>
+      <div class="card">
+        <h3>Vision</h3>
+        <p>To build a strong global trading community that thrives on institutional trading knowledge and mutual growth.</p>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="container">
-    <!-- STATS -->
-    <section aria-labelledby="impact" class="card">
-      <h3 id="impact">Our Impact</h3>
-      <div class="stats-grid" style="margin-top:12px">
-        <div class="stat">
-          <div class="num counter" data-target="500">0</div>
-          <div style="color:var(--muted)">Traders Educated</div>
-        </div>
-        <div class="stat">
-          <div class="num counter" data-target="15">0</div>
-          <div style="color:var(--muted)">Trading Strategies</div>
-        </div>
-        <div class="stat">
-          <div class="num counter" data-target="24">0</div>
-          <div style="color:var(--muted)">Support (hrs/day)</div>
-        </div>
-        <div class="stat">
-          <div class="num counter" data-target="5">0</div>
-          <div style="color:var(--muted)">Years Experience</div>
-        </div>
+  <!-- Stats -->
+  <section id="stats">
+    <h2>Our Impact</h2>
+    <div class="stats">
+      <div><div class="counter" data-target="500">0</div><p>Traders</p></div>
+      <div><div class="counter" data-target="120">0</div><p>Strategies</p></div>
+      <div><div class="counter" data-target="50">0</div><p>Mentorships</p></div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education & Resources</h2>
+    <div class="cards">
+      <div class="card"><h3>Courses</h3><p>Step-by-step lessons covering SMC, liquidity, and risk management.</p></div>
+      <div class="card"><h3>Mentorship</h3><p>1-on-1 coaching with experienced traders to sharpen your skills.</p></div>
+      <div class="card"><h3>Blog</h3><p>Weekly insights on market psychology, strategy, and risk control.</p></div>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section id="calculator">
+    <h2>Risk Calculator</h2>
+    <div class="calculator">
+      <input type="number" id="balance" placeholder="Account Balance ($)">
+      <input type="number" id="risk" placeholder="Risk %">
+      <input type="number" id="stoploss" placeholder="Stop Loss (pips)">
+      <button onclick="calculate()">Calculate Lot Size</button>
+      <p id="result"></p>
+    </div>
+  </section>
+
+  <!-- TradingView Multi-Symbol Chart -->
+  <section id="chart">
+    <h2>Live Forex Market Charts</h2>
+    <div class="tradingview-widget-container">
+      <div id="tradingview_chart"></div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section id="community">
+    <div class="community">
+      <h2>Join Our Trading Community</h2>
+      <p>Be part of a vibrant group of traders sharing insights, strategies, and signals daily.  
+      Connect with like-minded traders, learn faster, and grow together!</p>
+      <a href="https://t.me/yourtelegramgroup" target="_blank">🚀 Join Our Telegram</a>
+      <br><br>
+      <a href="https://discord.gg/yourdiscordinvite" target="_blank">💬 Join Our Discord</a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2>What Traders Say</h2>
+    <div class="testimonials">
+      <div class="testimonial-track">
+        <div class="testimonial">🔥 “Bullet Forex King made trading simple and profitable.”</div>
+        <div class="testimonial">💡 “I finally understand institutional order flow.”</div>
+        <div class="testimonial">🚀 “The mentorship transformed my trading journey.”</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ABOUT + FOUNDER -->
-    <section id="about" class="grid cols-2" style="margin-top:20px">
-      <article class="card">
-        <h3>About Bullet Forex King</h3>
-        <p>We transform retail traders into institutional-level thinkers through Smart Money Concepts (SMC), risk management, and live market maps. Learn to read institutional order flow and trade with edge.</p>
-        <div style="margin-top:12px" class="card">
-          <strong style="color:var(--primary)">Our Vision:</strong>
-          <p style="margin:8px 0 0">Build a community of disciplined traders who understand institutional dynamics and manage risk like professionals.</p>
-        </div>
-      </article>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-      <aside class="card">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#ffd86b); display:grid;place-items:center; font-weight:900; color:#081018; font-size:28px; box-shadow:0 12px 40px rgba(255,200,20,.06)">LM</div>
-          <div>
-            <h3 style="margin:0">Lifasi Malumo Lucky</h3>
-            <p style="margin:6px 0 0;color:var(--muted)">Core Founder & CEO — trader, mentor and educator focused on institutional-level trading strategies and consistency.</p>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">Price Action</span>
-              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">SMC Expert</span>
-              <span style="background:rgba(255,215,0,.06);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700">Risk Mgmt</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
+  <!-- Back to Top -->
+  <button id="backToTop">↑</button>
 
-    <!-- STRATEGIES -->
-    <section id="strategies" class="card" style="margin-top:20px">
-      <h3>Advanced Trading Strategies</h3>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:12px">
-        <div class="card">
-          <h3>Liquidity Grab & FVG</h3>
-          <p>Spot institutional liquidity raids then trade fair value gaps for reversals on aligned timeframes.</p>
-        </div>
-        <div class="card">
-          <h3>Order Block Mitigation</h3>
-          <p>Trade mitigations to order blocks after impulsive moves — ideal for low-risk entries.</p>
-        </div>
-        <div class="card">
-          <h3>BOS / CHoCH Breakout</h3>
-          <p>Use Break of Structure and Change of Character combined with liquidity confluence for strong trend plays.</p>
-        </div>
-      </div>
-    </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Bullet Forex King. All rights reserved.</p>
+    <p>
+      <a href="#home">Home</a> | 
+      <a href="#about">About</a> | 
+      <a href="#education">Education</a> | 
+      <a href="#community">Community</a> | 
+      <a href="#contact">Contact</a>
+    </p>
+  </footer>
 
-    <!-- CHARTS -->
-    <section id="charts" class="card" style="margin-top:20px">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <h3 style="margin:0">Live Market Charts</h3>
-        <div class="chart-tabs" id="chartTabs" role="tablist" aria-label="Chart pairs">
-          <button class="tab active" data-symbol="FX:EURUSD">EURUSD</button>
-          <button class="tab" data-symbol="FX:GBPUSD">GBPUSD</button>
-          <button class="tab" data-symbol="FX:USDJPY">USDJPY</button>
-          <button class="tab" data-symbol="OANDA:XAUUSD">XAUUSD</button>
-        </div>
-      </div>
-
-      <div id="tradingview_wrapper" style="margin-top:12px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.02)">
-        <div id="tradingview_chart" style="height:520px; width:100%"></div>
-      </div>
-    </section>
-
-    <!-- CALCULATOR -->
-    <section id="calculator" class="card" style="margin-top:20px">
-      <h3>Advanced Forex Risk Calculator</h3>
-      <div class="calc" style="margin-top:12px">
-        <div class="row">
-          <div>
-            <label for="balance">Account Balance (USD)</label>
-            <input id="balance" type="number" placeholder="e.g. 5000">
-          </div>
-          <div>
-            <label for="risk">Risk % per Trade</label>
-            <input id="risk" type="number" placeholder="e.g. 2" value="2">
-          </div>
-        </div>
-        <div class="row" style="margin-top:6px">
-          <div>
-            <label for="stoploss">Stop Loss (pips)</label>
-            <input id="stoploss" type="number" placeholder="e.g. 30">
-          </div>
-          <div>
-            <label for="pair">Currency Pair</label>
-            <select id="pair">
-              <option value="EURUSD">EUR/USD</option>
-              <option value="GBPUSD">GBP/USD</option>
-              <option value="USDJPY">USD/JPY</option>
-              <option value="XAUUSD">XAU/USD</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="calculateRisk()"><i class="fa-solid fa-equals"></i> Calculate Position Size</button>
-          <button class="btn btn-ghost" onclick="autoFillExample()">Fill Example</button>
-        </div>
-
-        <div id="result" class="result muted" style="margin-top:12px">Enter values and click calculate.</div>
-
-        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,.02); padding-top:12px">
-          <button class="btn" onclick="toggleAdvanced()"><i class="fa-solid fa-caret-down" id="advIcon"></i> Advanced Metrics</button>
-          <div id="advanced" style="margin-top:12px;display:none">
-            <div class="row">
-              <div>
-                <label for="rrr">Risk/Reward Ratio</label>
-                <input id="rrr" type="number" value="1.5" placeholder="e.g. 1.5">
-              </div>
-              <div>
-                <label for="winrate">Win Rate (%)</label>
-                <input id="winrate" type="number" placeholder="e.g. 60">
-              </div>
-            </div>
-            <div style="margin-top:10px">
-              <button class="btn btn-ghost" onclick="calculateAdvanced()">Calculate Performance</button>
-              <div id="advancedResult" class="result muted" style="margin-top:10px"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="card" style="margin-top:20px">
-      <h3>Smart Money Concepts Mastery</h3>
-      <div style="display:grid; gap:10px; margin-top:12px">
-        <div class="card"><strong>Liquidity Pools & Sweeps</strong><p style="margin-top:8px;color:var(--muted)">Institutions hunt stop clusters. Identify sweeps and you identify where they filled orders.</p></div>
-        <div class="card"><strong>Order Blocks & Mitigation</strong><p style="margin-top:8px;color:var(--muted)">The origin candle before a strong impulse — the best mitigations happen after liquidity grabs.</p></div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="card" style="margin-top:20px">
-      <h3>Success Stories</h3>
-      <div class="test-track" id="testTrack" style="margin-top:12px">
-        <div class="test"><p>"The liquidity concepts changed my trading — my win rate improved 40%."</p><div style="margin-top:8px;font-weight:700">— John M.</div></div>
-        <div class="test"><p>"Order block mitigation gave me consistent low-risk entries."</p><div style="margin-top:8px;font-weight:700">— Sarah K.</div></div>
-        <div class="test"><p>"Mentorship doubled my account in 6 months."</p><div style="margin-top:8px;font-weight:700">— Thomas P.</div></div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="card" style="margin-top:20px">
-      <h3>Contact</h3>
-      <p style="margin:8px 0 0">Email: <a href="mailto:info@bulletforexking.com">info@bulletforexking.com</a> · WhatsApp: <a href="tel:+264817239818">+264 81 723 9818</a></p>
-      <div style="margin-top:10px; display:flex; gap:8px">
-        <a class="btn btn-ghost" href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="btn btn-ghost" href="#"><i class="fab fa-telegram"></i> Telegram</a>
-      </div>
-    </section>
-
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div style="color:var(--muted)">© 2023–2025 Bullet Forex King — Risk Disclaimer: Trading carries risk. Education only.</div>
-        <div style="display:flex;gap:10px">
-          <a class="btn btn-ghost" href="#"><i class="fab fa-facebook"></i></a>
-          <a class="btn btn-ghost" href="#"><i class="fab fa-x-twitter"></i></a>
-          <a class="btn btn-ghost" href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- BACK TO TOP -->
-  <button class="back-to-top" id="backToTop" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
-
-  <!-- TradingView library -->
-  <script src="https://s3.tradingview.com/tv.js"></script>
-
+  <!-- Scripts -->
   <script>
-    /* Mobile nav toggle */
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navToggle.innerHTML = navLinks.classList.contains('open') ? '<i class="fa-solid fa-times"></i>' : '<i class="fa-solid fa-bars"></i>';
-    });
-
-    /* Scroll -> active nav */
-    const sections = document.querySelectorAll('main section, header');
-    const navA = document.querySelectorAll('.nav-links a');
-    function onScrollActivate(){
-      let current = '';
-      sections.forEach(s => {
-        const top = s.offsetTop - 120;
-        if(window.scrollY >= top) current = s.id || 'home';
-      });
-      navA.forEach(a => {
-        a.classList.remove('active');
-        if(a.getAttribute('href') === '#' + current) a.classList.add('active');
-      });
-    }
-    window.addEventListener('scroll', onScrollActivate);
-    onScrollActivate();
-
-    /* Counters (run once when visible) */
-    const counters = document.querySelectorAll('.counter');
-    const isInViewport = el => {
-      const rect = el.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom >= 0;
-    };
-    function runCounters(){
-      counters.forEach(c => {
-        if(c.dataset.ran) return;
-        if(isInViewport(c)){
-          const target = +c.dataset.target;
-          let i = 0;
-          const step = Math.max(1, Math.floor(target / 160));
-          const t = setInterval(()=> {
-            i += step;
-            if(i >= target){ c.textContent = target; c.dataset.ran = '1'; clearInterval(t); }
-            else c.textContent = i;
-          }, 18);
+    // Navbar highlight
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 60;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute("id");
         }
       });
-    }
-    window.addEventListener('scroll', runCounters);
-    runCounters();
-
-    /* Back to top */
-    const back = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 420) back.classList.add('visible'); else back.classList.remove('visible');
-    });
-    back.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-    /* Testimonials simple auto-scroll */
-    const testTrack = document.getElementById('testTrack');
-    let testIndex = 0;
-    setInterval(()=> {
-      testIndex = (testIndex + 1) % testTrack.children.length;
-      testTrack.scrollTo({ left: testIndex * (testTrack.children[0].offsetWidth + 14), behavior:'smooth' });
-    }, 3800);
-
-    /* Calculator */
-    function calculateRisk(){
-      const b = parseFloat(document.getElementById('balance').value);
-      const r = parseFloat(document.getElementById('risk').value);
-      const s = parseFloat(document.getElementById('stoploss').value);
-      const pair = document.getElementById('pair').value;
-      const out = document.getElementById('result');
-      if([b,r,s].some(x => !x || x <= 0)){ out.className='result muted'; out.textContent='Please enter valid positive numbers.'; return; }
-      // pip value quick estimate: for XAU use 1, JPY pairs adjust
-      let pipVal = 10;
-      if(pair === 'USDJPY') pipVal = 9.5;
-      if(pair === 'XAUUSD') pipVal = 1;
-      const riskAmount = b * (r/100);
-      const lotSize = riskAmount / (s * pipVal);
-      out.className='result';
-      out.innerHTML = `<div style="font-size:1.05rem"><strong>Recommended Lot Size:</strong> ${lotSize.toFixed(2)} lots</div>
-                       <div style="margin-top:6px;color:var(--muted)"><strong>Risk Amount:</strong> $${riskAmount.toFixed(2)} • Risk ${r}%</div>`;
-    }
-    function autoFillExample(){
-      document.getElementById('balance').value = 5000;
-      document.getElementById('risk').value = 2;
-      document.getElementById('stoploss').value = 30;
-      document.getElementById('pair').value = 'EURUSD';
-      calculateRisk();
-    }
-
-    /* Advanced calc */
-    function toggleAdvanced(){
-      const adv = document.getElementById('advanced');
-      const icon = document.getElementById('advIcon');
-      if(adv.style.display === 'none' || !adv.style.display){ adv.style.display='block'; icon.className='fa-solid fa-caret-up' } else { adv.style.display='none'; icon.className='fa-solid fa-caret-down' }
-    }
-    function calculateAdvanced(){
-      const rrr = parseFloat(document.getElementById('rrr').value);
-      const win = parseFloat(document.getElementById('winrate').value);
-      const out = document.getElementById('advancedResult');
-      if(isNaN(rrr) || isNaN(win) || rrr <= 0 || win <= 0 || win >= 100){ out.className='result muted'; out.textContent='Please enter valid values.'; return; }
-      const expectancy = (win/100 * rrr) - ((1 - win/100) * 1);
-      out.className='result';
-      out.innerHTML = `<div><strong>Expectancy:</strong> ${expectancy.toFixed(2)}R per trade</div><div style="margin-top:6px;color:var(--muted)">Based on ${win}% win rate and 1:${rrr} R:R</div>`;
-    }
-
-    /* TradingView: initialize chart and allow switching symbol tabs */
-    let tvWidget = null;
-    function createTradingView(symbol='FX:EURUSD'){
-      if(tvWidget) tvWidget.remove();
-      const config = {
-        width: "100%",
-        height: 520,
-        symbol: symbol,
-        interval: "60",
-        timezone: "Etc/UTC",
-        theme: "dark",
-        style: "1",
-        locale: "en",
-        toolbar_bg: "#101426",
-        enable_publishing: false,
-        allow_symbol_change: true,
-        container_id: "tradingview_chart"
-      };
-      tvWidget = new TradingView.widget(config);
-    }
-    // create initial chart after library loads
-    window.addEventListener('load', ()=> {
-      // TradingView library might not be ready immediately; try-catch with small delay
-      const tryInit = () => { try { createTradingView('FX:EURUSD'); } catch(e){ setTimeout(tryInit,300); } };
-      tryInit();
-    });
-
-    // Chart tabs switching
-    document.querySelectorAll('.tab').forEach(btn => {
-      btn.addEventListener('click', ()=> {
-        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-        btn.classList.add('active');
-        const sym = btn.dataset.symbol;
-        // re-create widget with new symbol
-        createTradingView(sym);
-        // scroll to chart for UX on mobile
-        document.getElementById('tradingview_chart').scrollIntoView({behavior:'smooth', block:'center'});
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
       });
     });
 
-    // small accessibility: allow keyboard nav close mobile menus on link click
-    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
-      if(navLinks.classList.contains('open')){ navLinks.classList.remove('open'); navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>'; }
-    }));
+    // Counters
+    const counters = document.querySelectorAll(".counter");
+    counters.forEach(counter => {
+      counter.innerText = "0";
+      const updateCounter = () => {
+        const target = +counter.getAttribute("data-target");
+        const count = +counter.innerText;
+        const increment = target / 200;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
+    });
+
+    // Calculator
+    function calculate() {
+      let balance = document.getElementById("balance").value;
+      let risk = document.getElementById("risk").value;
+      let stoploss = document.getElementById("stoploss").value;
+      if (balance && risk && stoploss) {
+        let riskAmount = (balance * risk) / 100;
+        let lotSize = riskAmount / stoploss / 10;
+        document.getElementById("result").innerText = "Lot Size: " + lotSize.toFixed(2);
+      } else {
+        document.getElementById("result").innerText = "Please fill all fields.";
+      }
+    }
+
+    // Back-to-Top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   </script>
+
+  <!-- TradingView Widget Script -->
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+  {
+    "symbols": [
+      ["EURUSD","FX:EURUSD"],
+      ["GBPUSD","FX:GBPUSD"],
+      ["USDJPY","FX:USDJPY"],
+      ["XAUUSD","OANDA:XAUUSD"]
+    ],
+    "chartOnly": false,
+    "width": "100%",
+    "height": "500",
+    "locale": "en",
+    "colorTheme": "dark",
+    "autosize": true,
+    "showVolume": false,
+    "showMA": true,
+    "hideDateRanges": false,
+    "hideMarketStatus": false,
+    "hideSymbolLogo": false,
+    "scalePosition": "right",
+    "scaleMode": "Normal",
+    "fontFamily": "Trebuchet MS, sans-serif",
+    "fontSize": "12",
+    "lineWidth": 2,
+    "upColor": "#26a69a",
+    "downColor": "#ef5350",
+    "borderUpColor": "#26a69a",
+    "borderDownColor": "#ef5350",
+    "wickUpColor": "#26a69a",
+    "wickDownColor": "#ef5350"
+  }
+  </script>
+
 </body>
 </html>
